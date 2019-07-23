@@ -37,8 +37,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.tar.bz2",
-                    "sha256": "5721818253e6a0989583192f96782c4a98eb6204965316df9f5ad75819225ca9"
+                    "url": "https://dl.bintray.com/boostorg/release/1.69.0/source/boost_1_69_0.tar.bz2",
+                    "sha256": "8f32d4617390d1c2d16f26a27ab60d97807b35440d45891fa340fc2648b04406"
                 }
             ]
         },
@@ -78,7 +78,7 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "http://bitbucket.org/eigen/eigen/get/3.3.5.tar.gz",
+                    "url": "https://bitbucket.org/eigen/eigen/get/3.3.5.tar.gz",
                     "sha256": "0454b6bacafd2bf641e0fb0f59572b9995728b77e41d1b8517f807334d07e68e"
                 }
             ]
@@ -92,8 +92,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/CGAL/cgal/releases/download/releases%2FCGAL-4.11.2/CGAL-4.11.2.tar.xz",
-                    "sha256": "a848f62968f545d46fd9b38f513983c04d3cc22eb59564ed4b3866d8626e7551"
+                    "url": "https://github.com/CGAL/cgal/releases/download/releases%2FCGAL-4.14/CGAL-4.14.tar.xz",
+                    "sha256": "59464b1eaee892f2223ba570a7642892c999e29524ab102a6efd7c29c94a29f7"
                 }
             ]
         },
@@ -123,8 +123,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://sourceforge.net/projects/pyqt/files/QScintilla2/QScintilla-2.10.3/QScintilla_gpl-2.10.3.tar.gz",
-                    "sha256": "d2657a68e7699d37209ff97db965de7c67884d99b33066d0ba457e6f39b581e7"
+                    "url": "https://sourceforge.net/projects/pyqt/files/QScintilla2/QScintilla-2.10.8/QScintilla_gpl-2.10.8.tar.gz",
+                    "sha256": "46cd5b4e609ca5e13130ba8cc7028d44fd1dc5b037f97c492899006ed0c992eb"
                 },
                 {
                     "type": "patch",
@@ -133,33 +133,36 @@
             ]
         },
         {
-            "name": "openscad",
-            "buildsystem": "qmake",
+            "name": "double-conversion",
+            "buildsystem": "cmake",
             "config-opts": [
-                "QMAKE_CFLAGS_ISYSTEM=",
-                "QMAKE_LIBDIR=/app/lib"
+                "-DCMAKE_INSTALL_LIBDIR:PATH=/app/lib"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "http://files.openscad.org/openscad-2015.03-2.src.tar.gz",
-                    "sha256": "a2535bb9e27d96e10e1e19268a596155164c7129d410a0c7f96edc2d09400083"
+                    "url": "https://github.com/google/double-conversion/archive/v3.1.5.tar.gz",
+                    "sha256": "a63ecb93182134ba4293fd5f22d6e08ca417caafa244afaa751cbfddf6415b13"
+                }
+            ]
+        },
+        {
+            "name": "openscad",
+            "buildsystem": "qmake",
+            "config-opts": [
+                "QMAKE_CFLAGS_ISYSTEM=",
+                "QMAKE_LIBDIR=/app/lib",
+                "QMAKE_CXXFLAGS+=-fext-numeric-literals"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://files.openscad.org/openscad-2019.05.src.tar.gz",
+                    "sha256": "0a16c4263ce52380819dd91c609a719d38f12f6b8c4da0e828dcbe5b70996f59"
                 },
                 {
                     "type": "patch",
-                    "path": "UIC-gettext-interoperability.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "openscad-libscintilla.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "openscad-appdata-update-1.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "openscad-appdata-update-2.patch"
+                    "path": "openscad-appdata.patch"
                 }
             ],
             "post-install": [
