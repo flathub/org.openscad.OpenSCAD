@@ -147,6 +147,48 @@
             ]
         },
         {
+            "name": "imagemagick",
+            "cleanup": [
+                "*"
+            ],
+            "config-opts": [
+                "--enable-static=no",
+                "--disable-docs",
+                "--disable-deprecated",
+                "--without-autotrace",
+                "--without-bzlib",
+                "--without-djvu",
+                "--without-dps",
+                "--without-fftw",
+                "--without-fontconfig",
+                "--without-fpx",
+                "--without-freetype",
+                "--without-gvc",
+                "--without-jbig",
+                "--without-jpeg",
+                "--without-lcms",
+                "--without-lzma",
+                "--without-magick-plus-plus",
+                "--without-openexr",
+                "--without-openjp2",
+                "--without-pango",
+                "--without-raqm",
+                "--without-tiff",
+                "--without-webp",
+                "--without-wmf",
+                "--without-x",
+                "--without-xml",
+                "--without-zlib"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/ImageMagick/ImageMagick/archive/7.0.8-56.tar.gz",
+                    "sha256": "061b80fdc3dc254acb6d61166162e4cdfed5f1ded19034ca0cc15497c4e19f38"
+                }
+            ]
+        },
+        {
             "name": "openscad",
             "buildsystem": "qmake",
             "config-opts": [
@@ -166,10 +208,12 @@
                 }
             ],
             "post-install": [
-                "mkdir -p /app/share/icons/hicolor/512x512/apps",
-                "mv /app/share/pixmaps/openscad.png /app/share/icons/hicolor/512x512/apps",
                 "mv /app/share/mime/packages/openscad.xml /app/share/mime/packages/org.openscad.OpenSCAD.xml",
-                "sed -i -e 's|<icon name=\"openscad\"/>|<icon name=\"org.openscad.OpenSCAD\"/>|' /app/share/mime/packages/org.openscad.OpenSCAD.xml"
+                "sed -i -e 's|<icon name=\"openscad\"/>|<icon name=\"org.openscad.OpenSCAD\"/>|' /app/share/mime/packages/org.openscad.OpenSCAD.xml",
+                "for s in {16,32,48,64,128,256,512}; do
+                    convert /app/share/pixmaps/openscad.png -resize ${s}x${s} openscad${s}x${s}.png
+                    install -Dm644 openscad${s}x${s}.png ${FLATPAK_DEST}/share/icons/hicolor/${s}x${s}/apps/openscad.png
+                done"
             ]
         }
     ]
