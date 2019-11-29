@@ -41,6 +41,7 @@
             "name": "freeglut",
             "buildsystem": "cmake",
             "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
                 "-DCMAKE_INSTALL_LIBDIR:PATH=/app/lib"
             ],
             "sources": [
@@ -65,6 +66,9 @@
             "name": "eigen",
             "builddir": true,
             "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
+            ],
             "cleanup": [
                 "/share"
             ],
@@ -92,6 +96,9 @@
                 "/bin"
             ],
             "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
+            ],
             "sources": [
                 {
                     "type": "archive",
@@ -139,6 +146,7 @@
             "name": "double-conversion",
             "buildsystem": "cmake",
             "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
                 "-DCMAKE_INSTALL_LIBDIR:PATH=/app/lib"
             ],
             "sources": [
