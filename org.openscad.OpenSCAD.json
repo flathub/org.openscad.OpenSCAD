@@ -4,7 +4,6 @@
     "runtime-version": "5.13",
     "sdk": "org.kde.Sdk",
     "command": "openscad",
-    "rename-appdata-file": "openscad.appdata.xml",
     "rename-desktop-file": "openscad.desktop",
     "rename-icon": "openscad",
     "finish-args": [
