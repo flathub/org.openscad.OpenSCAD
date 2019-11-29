@@ -1,19 +1,12 @@
 {
     "app-id": "org.openscad.OpenSCAD",
     "runtime": "org.kde.Platform",
-    "runtime-version": "5.11",
+    "runtime-version": "5.13",
     "sdk": "org.kde.Sdk",
     "command": "openscad",
     "rename-appdata-file": "openscad.appdata.xml",
     "rename-desktop-file": "openscad.desktop",
     "rename-icon": "openscad",
-    "build-options": {
-        "cflags": "-O2 -g",
-        "cxxflags": "-O2 -g",
-        "env": {
-            "V": "1"
-        }
-    },
     "finish-args": [
         "--socket=x11",
         "--share=ipc",
@@ -31,19 +24,19 @@
             "name": "boost",
             "buildsystem": "simple",
             "build-commands": [
-                "./bootstrap.sh --with-libraries=filesystem,program_options,regex,thread",
+                "./bootstrap.sh --with-libraries=filesystem,program_options,regex,thread,system",
                 "./b2 -j $FLATPAK_BUILDER_N_JOBS install --prefix=/app"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://dl.bintray.com/boostorg/release/1.69.0/source/boost_1_69_0.tar.bz2",
-                    "sha256": "8f32d4617390d1c2d16f26a27ab60d97807b35440d45891fa340fc2648b04406"
+                    "url": "https://dl.bintray.com/boostorg/release/1.71.0/source/boost_1_71_0.tar.bz2",
+                    "sha256": "d73a8da01e8bf8c7eda40b4c84915071a8c8a0df4a6734537ddde4a8580524ee"
                 }
             ]
         },
         "shared-modules/glew/glew.json",
-        "shared-modules/glu/glu-9.0.0.json",
+        "shared-modules/glu/glu-9.json",
         {
             "name": "freeglut",
             "buildsystem": "cmake",
@@ -53,8 +46,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://downloads.sourceforge.net/project/freeglut/freeglut/3.0.0/freeglut-3.0.0.tar.gz",
-                    "sha256": "2a43be8515b01ea82bcfa17d29ae0d40bd128342f0930cd1f375f1ff999f76a2"
+                    "url": "https://sourceforge.net/projects/freeglut/files/freeglut/3.2.1/freeglut-3.2.1.tar.gz",
+                    "sha256": "d4000e02102acaf259998c870e25214739d1f16f67f99cb35e4f46841399da68"
                 }
             ]
         },
@@ -63,8 +56,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://www.x.org/archive//individual/lib/libXmu-1.1.2.tar.bz2",
-                    "sha256": "756edc7c383254eef8b4e1b733c3bf1dc061b523c9f9833ac7058378b8349d0b"
+                    "url": "https://www.x.org/archive//individual/lib/libXmu-1.1.3.tar.bz2",
+                    "sha256": "9c343225e7c3dc0904f2122b562278da5fed639b1b5e880d25111561bac5b731"
                 }
             ]
         },
@@ -78,8 +71,18 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://bitbucket.org/eigen/eigen/get/3.3.5.tar.gz",
-                    "sha256": "0454b6bacafd2bf641e0fb0f59572b9995728b77e41d1b8517f807334d07e68e"
+                    "url": "https://bitbucket.org/eigen/eigen/get/3.3.7.tar.gz",
+                    "sha256": "7e84ef87a07702b54ab3306e77cea474f56a40afa1c0ab245bb11725d006d0da"
+                }
+            ]
+        },
+        {
+            "name": "mpfr",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://www.mpfr.org/mpfr-current/mpfr-4.0.2.tar.xz",
+                    "sha256": "1d3be708604eae0e42d578ba93b390c2a145f17743a744d8f3f8c2ad5855a38a"
                 }
             ]
         },
@@ -92,8 +95,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/CGAL/cgal/releases/download/releases%2FCGAL-4.14/CGAL-4.14.tar.xz",
-                    "sha256": "59464b1eaee892f2223ba570a7642892c999e29524ab102a6efd7c29c94a29f7"
+                    "url": "https://github.com/CGAL/cgal/releases/download/releases%2FCGAL-4.14.2/CGAL-4.14.2.tar.xz",
+                    "sha256": "819b6863614ee65ab0edc98bf70321b6cb65e0b40b8d40fe7bd737eee0b89922"
                 }
             ]
         },
@@ -123,8 +126,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://sourceforge.net/projects/pyqt/files/QScintilla2/QScintilla-2.10.8/QScintilla_gpl-2.10.8.tar.gz",
-                    "sha256": "46cd5b4e609ca5e13130ba8cc7028d44fd1dc5b037f97c492899006ed0c992eb"
+                    "url": "https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.11.3/QScintilla-2.11.3.tar.gz",
+                    "sha256": "cfadbb7f32fb8a9404fbe5db0ad14ac02229ebdf30a519141236080236ae2dd6"
                 },
                 {
                     "type": "patch",
@@ -183,8 +186,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/ImageMagick/ImageMagick/archive/7.0.8-56.tar.gz",
-                    "sha256": "061b80fdc3dc254acb6d61166162e4cdfed5f1ded19034ca0cc15497c4e19f38"
+                    "url": "https://github.com/ImageMagick/ImageMagick/archive/7.0.9-6.tar.gz",
+                    "sha256": "83517787920fc3a1215baf2b8025fdc6f2a09a934fd59b5007eaa214225ca5fc"
                 }
             ]
         },
