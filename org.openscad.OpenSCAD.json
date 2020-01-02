@@ -158,6 +158,39 @@
             ]
         },
         {
+            "name": "lib3mf",
+            "buildsystem": "cmake",
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DCMAKE_INSTALL_LIBDIR:PATH=/app/lib",
+		"-DLIB3MF_TESTS=OFF",
+		"-DUSE_INCLUDED_LIBZIP=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/3MFConsortium/lib3mf/archive/v1.8.1.tar.gz",
+                    "sha256": "207dd142c9ca86a4fb1a4b2baadbdf579f35e03f9b8bf5c02dae027da5ae9d17"
+                }
+            ]
+        },
+        {
+            "name": "libzip",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DCMAKE_INSTALL_LIBDIR:PATH=/app/lib",
+                "-DCMAKE_INSTALL_INCLUDEDIR:PATH=/app/include"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://libzip.org/download/libzip-1.5.2.tar.xz",
+                    "sha256": "b3de4d4bd49a01e0cab3507fc163f88e1651695b6b9cb25ad174dbe319d4a3b4"
+                }
+            ]
+        },
+        {
             "name": "openscad",
             "buildsystem": "qmake",
             "config-opts": [
