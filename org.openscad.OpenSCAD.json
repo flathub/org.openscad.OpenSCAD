@@ -8,6 +8,8 @@
     "rename-icon": "openscad",
     "finish-args": [
         "--socket=x11",
+        "--socket=fallback-x11",
+        "--socket=wayland",
         "--share=ipc",
         "--device=dri",
         "--filesystem=home"
