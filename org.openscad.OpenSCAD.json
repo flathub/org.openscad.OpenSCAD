@@ -8,6 +8,8 @@
     "rename-icon": "openscad",
     "finish-args": [
         "--socket=x11",
+        "--socket=fallback-x11",
+        "--socket=wayland",
         "--share=ipc",
         "--device=dri",
         "--filesystem=home"
@@ -75,8 +77,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://bitbucket.org/eigen/eigen/get/3.3.7.tar.gz",
-                    "sha256": "7e84ef87a07702b54ab3306e77cea474f56a40afa1c0ab245bb11725d006d0da"
+                    "url": "https://gitlab.com/libeigen/eigen/-/archive/3.3.7/eigen-3.3.7.tar.gz",
+                    "sha256": "d56fbad95abf993f8af608484729e3d87ef611dd85b3380a8bad1d5cbc373a57"
                 }
             ]
         },
