@@ -1,7 +1,7 @@
 {
     "app-id": "org.openscad.OpenSCAD",
     "runtime": "org.kde.Platform",
-    "runtime-version": "5.13",
+    "runtime-version": "5.15",
     "sdk": "org.kde.Sdk",
     "command": "openscad",
     "rename-desktop-file": "openscad.desktop",
@@ -41,11 +41,16 @@
         "shared-modules/glu/glu-9.json",
         {
             "name": "freeglut",
-            "buildsystem": "cmake",
+            "buildsystem": "cmake-ninja",
+            "builddir": true,
             "config-opts": [
                 "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
                 "-DCMAKE_INSTALL_LIBDIR:PATH=/app/lib"
             ],
+            "build-options": {
+                "cflags": "-fcommon",
+                "cxxflags": "-fcommon"
+            },
             "sources": [
                 {
                     "type": "archive",
