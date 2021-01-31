@@ -32,8 +32,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://dl.bintray.com/boostorg/release/1.71.0/source/boost_1_71_0.tar.bz2",
-                    "sha256": "d73a8da01e8bf8c7eda40b4c84915071a8c8a0df4a6734537ddde4a8580524ee"
+                    "url": "https://dl.bintray.com/boostorg/release/1.74.0/source/boost_1_74_0.tar.bz2",
+                    "sha256": "83bfc1507731a0906e387fc28b7ef5417d591429e51e788417fe9ff025e116b1"
                 }
             ]
         },
@@ -82,8 +82,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://gitlab.com/libeigen/eigen/-/archive/3.3.7/eigen-3.3.7.tar.gz",
-                    "sha256": "d56fbad95abf993f8af608484729e3d87ef611dd85b3380a8bad1d5cbc373a57"
+                    "url": "https://gitlab.com/libeigen/eigen/-/archive/3.3.9/eigen-3.3.9.tar.gz",
+                    "sha256": "7985975b787340124786f092b3a07d594b2e9cd53bbfe5f3d9b1daee7d55f56f"
                 }
             ]
         },
@@ -109,8 +109,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/CGAL/cgal/releases/download/releases%2FCGAL-4.14.2/CGAL-4.14.2.tar.xz",
-                    "sha256": "819b6863614ee65ab0edc98bf70321b6cb65e0b40b8d40fe7bd737eee0b89922"
+                    "url": "https://github.com/CGAL/cgal/releases/download/releases%2FCGAL-4.14.3/CGAL-4.14.3.tar.xz",
+                    "sha256": "5bafe7abe8435beca17a1082062d363368ec1e3f0d6581bb0da8b010fb389fe4"
                 }
             ]
         },
@@ -140,8 +140,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.11.3/QScintilla-2.11.3.tar.gz",
-                    "sha256": "cfadbb7f32fb8a9404fbe5db0ad14ac02229ebdf30a519141236080236ae2dd6"
+                    "url": "https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.11.6/QScintilla-2.11.6.tar.gz",
+                    "sha256": "e7346057db47d2fb384467fafccfcb13aa0741373c5d593bc72b55b2f0dd20a7"
                 },
                 {
                     "type": "patch",
@@ -192,8 +192,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://libzip.org/download/libzip-1.5.2.tar.xz",
-                    "sha256": "b3de4d4bd49a01e0cab3507fc163f88e1651695b6b9cb25ad174dbe319d4a3b4"
+                    "url": "https://libzip.org/download/libzip-1.7.3.tar.xz",
+                    "sha256": "a60473ffdb7b4260c08bfa19c2ccea0438edac11193c3afbbb1f17fbcf6c6132"
                 }
             ]
         },
