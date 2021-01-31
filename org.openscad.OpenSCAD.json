@@ -218,7 +218,7 @@
             "post-install": [
                 "mv /app/share/mime/packages/openscad.xml /app/share/mime/packages/org.openscad.OpenSCAD.xml",
                 "sed -i -e 's|<icon name=\"openscad\"/>|<icon name=\"org.openscad.OpenSCAD\"/>|' /app/share/mime/packages/org.openscad.OpenSCAD.xml",
-                "sed -i -e '/<releases>/a\\    <release date=\"2021-01-31\" version=\"2021.01\"/>' /app/share/metainfo/org.openscad.OpenSCAD.appdata.xml"
+                "sed -i -e '/<.releases>/i\\    <release date=\"2021-01-31\" version=\"2021.01\"/>' /app/share/metainfo/org.openscad.OpenSCAD.appdata.xml"
             ]
         }
     ]
