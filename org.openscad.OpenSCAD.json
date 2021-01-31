@@ -211,42 +211,14 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://files.openscad.org/openscad-2019.05.src.tar.gz",
-                    "sha256": "0a16c4263ce52380819dd91c609a719d38f12f6b8c4da0e828dcbe5b70996f59"
-                },
-                {
-                    "type": "file",
-                    "url": "https://github.com/openscad/openscad/raw/3be9bd3a8f0f16e371d5b022a4be712fa8bef248/icons/openscad-48.png",
-                    "sha256": "f89266c6b56bc77b515991550dc000d77e0e83111bb693446e6c81b451721531"
-                },
-                {
-                    "type": "file",
-                    "url": "https://github.com/openscad/openscad/raw/3be9bd3a8f0f16e371d5b022a4be712fa8bef248/icons/openscad-64.png",
-                    "sha256": "1a0dd8c9659226180adab91562759d39d95899206059e04b72679601a59f25b9"
-                },
-                {
-                    "type": "file",
-                    "url": "https://github.com/openscad/openscad/raw/3be9bd3a8f0f16e371d5b022a4be712fa8bef248/icons/openscad-128.png",
-                    "sha256": "55bf86977f08bfd8232be686129a4dcba7c7dbc47ea3ddf98d43d13b14f97890"
-                },
-                {
-                    "type": "file",
-                    "url": "https://github.com/openscad/openscad/raw/3be9bd3a8f0f16e371d5b022a4be712fa8bef248/icons/openscad-256.png",
-                    "sha256": "d8e32d1988d289e493e8f7b6bf08257051f0cb357e36e0b74c440db84bc4b6dc"
-                },
-                {
-                    "type": "file",
-                    "url": "https://github.com/openscad/openscad/raw/3be9bd3a8f0f16e371d5b022a4be712fa8bef248/icons/openscad-512.png",
-                    "sha256": "7d22ec15c2d56e7df59aa97f8aef80ad7546e4d25f62cf8f61e80381ccbdc868"
+                    "url": "https://files.openscad.org/openscad-2021.01.src.tar.gz",
+                    "sha256": "d938c297e7e5f65dbab1461cac472fc60dfeaa4999ea2c19b31a4184f2d70359"
                 }
             ],
             "post-install": [
                 "mv /app/share/mime/packages/openscad.xml /app/share/mime/packages/org.openscad.OpenSCAD.xml",
                 "sed -i -e 's|<icon name=\"openscad\"/>|<icon name=\"org.openscad.OpenSCAD\"/>|' /app/share/mime/packages/org.openscad.OpenSCAD.xml",
-                "sed -i -e '/<releases>/a\\    <release date=\"2019-05-13\" version=\"2019.05\"/>' /app/share/metainfo/org.openscad.OpenSCAD.appdata.xml",
-                "for s in {48,64,128,256,512}; do
-                    install -Dm644 openscad-${s}.png \"${FLATPAK_DEST}/share/icons/hicolor/${s}x${s}/apps/openscad.png\"
-                done"
+                "sed -i -e '/<releases>/a\\    <release date=\"2021-01-31\" version=\"2021.01\"/>' /app/share/metainfo/org.openscad.OpenSCAD.appdata.xml",
             ]
         }
     ]
