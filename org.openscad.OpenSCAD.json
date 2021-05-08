@@ -32,8 +32,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://dl.bintray.com/boostorg/release/1.71.0/source/boost_1_71_0.tar.bz2",
-                    "sha256": "d73a8da01e8bf8c7eda40b4c84915071a8c8a0df4a6734537ddde4a8580524ee"
+                    "url": "https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.bz2",
+                    "sha256": "f0397ba6e982c4450f27bf32a2a83292aba035b827a5623a14636ea583318c41"
                 }
             ]
         },
@@ -82,8 +82,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://gitlab.com/libeigen/eigen/-/archive/3.3.7/eigen-3.3.7.tar.gz",
-                    "sha256": "d56fbad95abf993f8af608484729e3d87ef611dd85b3380a8bad1d5cbc373a57"
+                    "url": "https://gitlab.com/libeigen/eigen/-/archive/3.3.9/eigen-3.3.9.tar.gz",
+                    "sha256": "7985975b787340124786f092b3a07d594b2e9cd53bbfe5f3d9b1daee7d55f56f"
                 }
             ]
         },
@@ -92,8 +92,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://www.mpfr.org/mpfr-current/mpfr-4.0.2.tar.xz",
-                    "sha256": "1d3be708604eae0e42d578ba93b390c2a145f17743a744d8f3f8c2ad5855a38a"
+                    "url": "https://www.mpfr.org/mpfr-current/mpfr-4.1.0.tar.xz",
+                    "sha256": "0c98a3f1732ff6ca4ea690552079da9c597872d30e96ec28414ee23c95558a7f"
                 }
             ]
         },
@@ -109,8 +109,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/CGAL/cgal/releases/download/releases%2FCGAL-4.14.2/CGAL-4.14.2.tar.xz",
-                    "sha256": "819b6863614ee65ab0edc98bf70321b6cb65e0b40b8d40fe7bd737eee0b89922"
+                    "url": "https://github.com/CGAL/cgal/releases/download/releases%2FCGAL-4.14.3/CGAL-4.14.3.tar.xz",
+                    "sha256": "5bafe7abe8435beca17a1082062d363368ec1e3f0d6581bb0da8b010fb389fe4"
                 }
             ]
         },
@@ -140,8 +140,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.11.3/QScintilla-2.11.3.tar.gz",
-                    "sha256": "cfadbb7f32fb8a9404fbe5db0ad14ac02229ebdf30a519141236080236ae2dd6"
+                    "url": "https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.11.6/QScintilla-2.11.6.tar.gz",
+                    "sha256": "e7346057db47d2fb384467fafccfcb13aa0741373c5d593bc72b55b2f0dd20a7"
                 },
                 {
                     "type": "patch",
@@ -192,8 +192,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://libzip.org/download/libzip-1.5.2.tar.xz",
-                    "sha256": "b3de4d4bd49a01e0cab3507fc163f88e1651695b6b9cb25ad174dbe319d4a3b4"
+                    "url": "https://libzip.org/download/libzip-1.7.3.tar.xz",
+                    "sha256": "a60473ffdb7b4260c08bfa19c2ccea0438edac11193c3afbbb1f17fbcf6c6132"
                 }
             ]
         },
@@ -203,7 +203,9 @@
             "config-opts": [
                 "QMAKE_CFLAGS_ISYSTEM=",
                 "QMAKE_LIBDIR=/app/lib",
-                "QMAKE_CXXFLAGS+=-fext-numeric-literals"
+                "QMAKE_CXXFLAGS+=-fext-numeric-literals",
+                "CONFIG-=experimental",
+                "CONFIG-=debug"
             ],
             "cleanup": [
                 "/share/pixmaps"
@@ -211,42 +213,14 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://files.openscad.org/openscad-2019.05.src.tar.gz",
-                    "sha256": "0a16c4263ce52380819dd91c609a719d38f12f6b8c4da0e828dcbe5b70996f59"
-                },
-                {
-                    "type": "file",
-                    "url": "https://github.com/openscad/openscad/raw/3be9bd3a8f0f16e371d5b022a4be712fa8bef248/icons/openscad-48.png",
-                    "sha256": "f89266c6b56bc77b515991550dc000d77e0e83111bb693446e6c81b451721531"
-                },
-                {
-                    "type": "file",
-                    "url": "https://github.com/openscad/openscad/raw/3be9bd3a8f0f16e371d5b022a4be712fa8bef248/icons/openscad-64.png",
-                    "sha256": "1a0dd8c9659226180adab91562759d39d95899206059e04b72679601a59f25b9"
-                },
-                {
-                    "type": "file",
-                    "url": "https://github.com/openscad/openscad/raw/3be9bd3a8f0f16e371d5b022a4be712fa8bef248/icons/openscad-128.png",
-                    "sha256": "55bf86977f08bfd8232be686129a4dcba7c7dbc47ea3ddf98d43d13b14f97890"
-                },
-                {
-                    "type": "file",
-                    "url": "https://github.com/openscad/openscad/raw/3be9bd3a8f0f16e371d5b022a4be712fa8bef248/icons/openscad-256.png",
-                    "sha256": "d8e32d1988d289e493e8f7b6bf08257051f0cb357e36e0b74c440db84bc4b6dc"
-                },
-                {
-                    "type": "file",
-                    "url": "https://github.com/openscad/openscad/raw/3be9bd3a8f0f16e371d5b022a4be712fa8bef248/icons/openscad-512.png",
-                    "sha256": "7d22ec15c2d56e7df59aa97f8aef80ad7546e4d25f62cf8f61e80381ccbdc868"
+                    "url": "https://files.openscad.org/openscad-2021.01.src.tar.gz",
+                    "sha256": "d938c297e7e5f65dbab1461cac472fc60dfeaa4999ea2c19b31a4184f2d70359"
                 }
             ],
             "post-install": [
                 "mv /app/share/mime/packages/openscad.xml /app/share/mime/packages/org.openscad.OpenSCAD.xml",
                 "sed -i -e 's|<icon name=\"openscad\"/>|<icon name=\"org.openscad.OpenSCAD\"/>|' /app/share/mime/packages/org.openscad.OpenSCAD.xml",
-                "sed -i -e '/<releases>/a\\    <release date=\"2019-05-13\" version=\"2019.05\"/>' /app/share/metainfo/org.openscad.OpenSCAD.appdata.xml",
-                "for s in {48,64,128,256,512}; do
-                    install -Dm644 openscad-${s}.png \"${FLATPAK_DEST}/share/icons/hicolor/${s}x${s}/apps/openscad.png\"
-                done"
+                "sed -i -e '/<release /d; /<.releases>/i\\    <release date=\"2021-01-31\" version=\"2021.01\"/>' /app/share/metainfo/org.openscad.OpenSCAD.appdata.xml"
             ]
         }
     ]
