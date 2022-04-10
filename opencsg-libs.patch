@@ -1,8 +1,7 @@
-diff --git a/example/Makefile b/example/Makefile
-index 88be11b..a3796df 100644
---- a/example/Makefile
-+++ b/example/Makefile
-@@ -16,7 +16,7 @@ CXXFLAGS      = -pipe -O2 -Wall -W $(DEFINES)
+diff -ur OpenCSG-1.5.0.orig/example/Makefile OpenCSG-1.5.0/example/Makefile
+--- OpenCSG-1.5.0.orig/example/Makefile	2022-04-10 17:04:35.000000000 +0200
++++ OpenCSG-1.5.0/example/Makefile	2022-04-11 01:16:42.507766104 +0200
+@@ -16,7 +16,7 @@
  INCPATH       = -I. -I../include -I/usr/X11R6/include
  LINK          = g++
  LFLAGS        = -Wl,-O1
@@ -11,7 +10,7 @@ index 88be11b..a3796df 100644
  AR            = ar cqs
  RANLIB        = 
  QMAKE         = /usr/lib/x86_64-linux-gnu/qt4/bin/qmake
-@@ -124,13 +124,13 @@ main.o: main.cpp displaylistPrimitive.h
+@@ -124,13 +124,13 @@
  ####### Install
  
  install_target: first FORCE
@@ -30,11 +29,22 @@ index 88be11b..a3796df 100644
  
  
  install:  install_target  FORCE
-diff --git a/src/Makefile b/src/Makefile
-index b70edb4..5fb079d 100644
---- a/src/Makefile
-+++ b/src/Makefile
-@@ -16,7 +16,7 @@ CXXFLAGS      = -pipe -O2 -Wall -W -fPIC $(DEFINES)
+diff -ur OpenCSG-1.5.0.orig/src/batch.cpp OpenCSG-1.5.0/src/batch.cpp
+--- OpenCSG-1.5.0.orig/src/batch.cpp	2022-04-10 17:04:35.000000000 +0200
++++ OpenCSG-1.5.0/src/batch.cpp	2022-04-11 01:17:30.464252846 +0200
+@@ -25,6 +25,8 @@
+ #include "batch.h"
+ #include "primitiveHelper.h"
+ 
++#include <cstddef>
++
+ namespace OpenCSG {
+ 
+     class FullscreenPrimitive : public Primitive
+diff -ur OpenCSG-1.5.0.orig/src/Makefile OpenCSG-1.5.0/src/Makefile
+--- OpenCSG-1.5.0.orig/src/Makefile	2022-04-10 17:04:35.000000000 +0200
++++ OpenCSG-1.5.0/src/Makefile	2022-04-11 01:16:42.507766104 +0200
+@@ -16,7 +16,7 @@
  INCPATH       = -I. -I../include -I.. -I/usr/X11R6/include
  LINK          = g++
  LFLAGS        = -Wl,-O1 -shared -Wl,-soname,libopencsg.so.1
@@ -43,7 +53,7 @@ index b70edb4..5fb079d 100644
  AR            = ar cqs
  RANLIB        = 
  QMAKE         = /usr/lib/x86_64-linux-gnu/qt4/bin/qmake
-@@ -285,29 +285,29 @@ RenderTexture.o: ../RenderTexture/RenderTexture.cpp ../RenderTexture/RenderTextu
+@@ -285,29 +285,29 @@
  ####### Install
  
  install_target: first FORCE
@@ -88,3 +98,14 @@ index b70edb4..5fb079d 100644
  
  
  install:  install_target install_headers  FORCE
+diff -ur OpenCSG-1.5.0.orig/src/renderSCS.cpp OpenCSG-1.5.0/src/renderSCS.cpp
+--- OpenCSG-1.5.0.orig/src/renderSCS.cpp	2022-04-10 17:04:35.000000000 +0200
++++ OpenCSG-1.5.0/src/renderSCS.cpp	2022-04-11 01:17:21.248159313 +0200
+@@ -35,6 +35,7 @@
+ 
+ #include <algorithm>
+ #include <map>
++#include <cstddef>
+ 
+ namespace OpenCSG {
+ 
