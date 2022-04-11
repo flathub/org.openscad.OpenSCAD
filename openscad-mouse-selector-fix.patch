@@ -1,0 +1,19 @@
+From 2d0e8bdcff8bb28edc41629bc62ac36a38248a8c Mon Sep 17 00:00:00 2001
+From: Torsten Paul <Torsten.Paul@gmx.de>
+Date: Thu, 17 Feb 2022 14:54:50 +0100
+Subject: Disable depth test after extracting pixel data.
+
+
+diff --git a/src/mouseselector.cc b/src/mouseselector.cc
+index 43ab0f4bf..fc65c0e55 100644
+--- a/src/mouseselector.cc
++++ b/src/mouseselector.cc
+@@ -187,6 +187,8 @@ int MouseSelector::select(const Renderer *renderer, int x, int y) {
+   GLubyte color[3] = { 0 };
+   glReadPixels(x, y, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, color);
+   OPENGL_TEST("glReadPixels");
++  glDisable(GL_DEPTH_TEST);
++
+   int index = (uint32_t)color[0] | ((uint32_t)color[1] << 8) | ((uint32_t)color[2] << 16);
+ 
+   // Switch the active framebuffer back to the default

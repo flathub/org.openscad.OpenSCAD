@@ -32,8 +32,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.bz2",
-                    "sha256": "f0397ba6e982c4450f27bf32a2a83292aba035b827a5623a14636ea583318c41"
+                    "url": "https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/boost_1_78_0.tar.bz2",
+                    "sha256": "8681f175d4bdb26c52222665793eef08490d7758529330f98d3b29dd0735bccc"
                 }
             ]
         },
@@ -124,8 +124,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "http://www.opencsg.org/OpenCSG-1.4.2.tar.gz",
-                    "sha256": "d952ec5d3a2e46a30019c210963fcddff66813efc9c29603b72f9553adff4afb"
+                    "url": "https://www.opencsg.org/OpenCSG-1.5.0.tar.gz",
+                    "sha256": "bf2573acf3f8ee634aee074db2406e125a77b262b73ef2a65eff28664051174a"
                 },
                 {
                     "type": "patch",
@@ -215,6 +215,18 @@
                     "type": "archive",
                     "url": "https://files.openscad.org/openscad-2021.01.src.tar.gz",
                     "sha256": "d938c297e7e5f65dbab1461cac472fc60dfeaa4999ea2c19b31a4184f2d70359"
+                },
+                {
+                    "type": "patch",
+                    "path": "openscad-comment-parser-fix.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "openscad-dxf-loader-fix.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "openscad-mouse-selector-fix.patch"
                 }
             ],
             "post-install": [
