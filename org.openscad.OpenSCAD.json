@@ -12,7 +12,9 @@
         "--socket=wayland",
         "--share=ipc",
         "--device=dri",
-        "--filesystem=home"
+        "--filesystem=home",
+	"--filesystem=/run/spnav.sock:ro",
+	"--env=SPNAV_SOCKET=/run/spnav.sock"
     ],
     "cleanup": [
         "/include",
@@ -109,8 +111,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/CGAL/cgal/releases/download/releases%2FCGAL-4.14.3/CGAL-4.14.3.tar.xz",
-                    "sha256": "5bafe7abe8435beca17a1082062d363368ec1e3f0d6581bb0da8b010fb389fe4"
+                    "url": "https://github.com/CGAL/cgal/releases/download/v5.5.2/CGAL-5.5.2-library.zip",
+                    "sha256": "77b17ba5d43fe844c0eca7fb7eff7d5687174b037290c390f1251ef44cc4909b"
                 }
             ]
         },
@@ -159,7 +161,7 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/google/double-conversion/archive/refs/tags/v3.2.1.tar.gz"
+                    "url": "https://github.com/google/double-conversion/archive/refs/tags/v3.2.1.tar.gz",
                     "sha256": "e40d236343cad807e83d192265f139481c51fc83a1c49e406ac6ce0a0ba7cd35"
                 }
             ]
@@ -213,27 +215,36 @@
             ]
         },
         {
+            "name": "libspnav",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/FreeSpacenav/libspnav/releases/download/v1.1/libspnav-1.1.tar.gz",
+                    "sha256": "04b297f68a10db4fa40edf68d7f823ba7b9d0442f2b665181889abe2cea42759"
+                }
+            ]
+        },
+        {
             "name": "openscad",
             "buildsystem": "cmake",
             "config-opts": [
 		"-DCMAKE_BUILD_TYPE=RelWithDebInfo",
 		"-DEXPERIMENTAL=ON",
-		"-DSNAPSHOT=ON",
-		"-DSUFFIX=nightly"
+		"-DSNAPSHOT=ON"
             ],
             "cleanup": [
                 "/share/pixmaps"
             ],
             "sources": [
                 {
-                    "type": "archive",
-                    "url": "https://github.com/openscad/openscad/archive/27227d9d7a4d9172a570066bbfff9ef04d4903d2.tar.gz"
-                    "sha256": "06771b2490cdcb1ee436f06f5fa59fb2767b4b2ce621e2241bc8997d897eb02c"
+                    "type": "git",
+                    "url": "https://github.com/openscad/openscad.git",
+                    "commit": "27227d9d7a4d9172a570066bbfff9ef04d4903d2"
                 }
             ],
             "post-install": [
                 "mv /app/share/mime/packages/openscad.xml /app/share/mime/packages/org.openscad.OpenSCAD.xml",
-                "sed -i -e 's|<icon name=\"openscad\"/>|<icon name=\"org.openscad.OpenSCAD\"/>|' /app/share/mime/packages/org.openscad.OpenSCAD.xml",
+                "sed -i -e 's|<icon name=\"openscad\"/>|<icon name=\"org.openscad.OpenSCAD\"/>|' /app/share/mime/packages/org.openscad.OpenSCAD.xml"
             ]
         }
     ]
