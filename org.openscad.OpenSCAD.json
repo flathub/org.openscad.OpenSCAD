@@ -216,12 +216,6 @@
         },
         {
             "name": "libspnav",
-            "buildsystem": "cmake-ninja",
-            "config-opts": [
-                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-                "-DCMAKE_INSTALL_LIBDIR:PATH=/app/lib",
-                "-DCMAKE_INSTALL_INCLUDEDIR:PATH=/app/include"
-            ],
             "sources": [
                 {
                     "type": "archive",
