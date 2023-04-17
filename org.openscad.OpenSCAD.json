@@ -226,9 +226,9 @@
             ],
             "sources": [
                 {
-                    "type": "archive",
-                    "url": "https://github.com/openscad/openscad/archive/27227d9d7a4d9172a570066bbfff9ef04d4903d2.tar.gz",
-                    "sha256": "06771b2490cdcb1ee436f06f5fa59fb2767b4b2ce621e2241bc8997d897eb02c"
+                    "type": "git",
+                    "url": "https://github.com/openscad/openscad.git",
+                    "commit": "27227d9d7a4d9172a570066bbfff9ef04d4903d2",
                 }
             ],
             "post-install": [
