@@ -244,7 +244,7 @@
                 }
             ],
             "post-install": [
-                "mv /app/share/mime/packages/openscad.xml /app/share/mime/packages/org.openscad.OpenSCAD.xml",
+                "mv /app/share/mime/packages/openscad-nightly.xml /app/share/mime/packages/org.openscad.OpenSCAD.xml",
                 "sed -i -e 's|<icon name=\"openscad\"/>|<icon name=\"org.openscad.OpenSCAD\"/>|' /app/share/mime/packages/org.openscad.OpenSCAD.xml"
             ]
         }
