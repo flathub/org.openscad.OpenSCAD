@@ -12,7 +12,9 @@
         "--socket=wayland",
         "--share=ipc",
         "--device=dri",
-        "--filesystem=home"
+        "--filesystem=home",
+	"--filesystem=/run/spnav.sock:ro",
+	"--env=SPNAV_SOCKET=/run/spnav.sock"
     ],
     "cleanup": [
         "/include",
@@ -213,6 +215,22 @@
             ]
         },
         {
+            "name": "libspnav",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DCMAKE_INSTALL_LIBDIR:PATH=/app/lib",
+                "-DCMAKE_INSTALL_INCLUDEDIR:PATH=/app/include"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/FreeSpacenav/libspnav/releases/download/v1.1/libspnav-1.1.tar.gz",
+                    "sha256": "04b297f68a10db4fa40edf68d7f823ba7b9d0442f2b665181889abe2cea42759"
+                }
+            ]
+        },
+        {
             "name": "openscad",
             "buildsystem": "cmake",
             "config-opts": [
@@ -228,7 +246,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/openscad/openscad.git",
-                    "commit": "27227d9d7a4d9172a570066bbfff9ef04d4903d2",
+                    "commit": "27227d9d7a4d9172a570066bbfff9ef04d4903d2"
                 }
             ],
             "post-install": [
