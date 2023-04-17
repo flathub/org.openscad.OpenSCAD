@@ -159,8 +159,23 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/google/double-conversion/archive/v3.1.5.tar.gz",
-                    "sha256": "a63ecb93182134ba4293fd5f22d6e08ca417caafa244afaa751cbfddf6415b13"
+                    "url": "https://github.com/google/double-conversion/archive/refs/tags/v3.2.1.tar.gz"
+                    "sha256": "e40d236343cad807e83d192265f139481c51fc83a1c49e406ac6ce0a0ba7cd35"
+                }
+            ]
+        },
+        {
+            "name": "tbb",
+            "buildsystem": "cmake",
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DCMAKE_INSTALL_LIBDIR:PATH=/app/lib"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.9.0.tar.gz",
+                    "sha256": "1ce48f34dada7837f510735ff1172f6e2c261b09460e3bf773b49791d247d24e"
                 }
             ]
         },
@@ -192,20 +207,19 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://libzip.org/download/libzip-1.7.3.tar.xz",
-                    "sha256": "a60473ffdb7b4260c08bfa19c2ccea0438edac11193c3afbbb1f17fbcf6c6132"
+                    "url": "https://libzip.org/download/libzip-1.9.2.tar.xz",
+                    "sha256": "c93e9852b7b2dc931197831438fee5295976ee0ba24f8524a8907be5c2ba5937"
                 }
             ]
         },
         {
             "name": "openscad",
-            "buildsystem": "qmake",
+            "buildsystem": "cmake",
             "config-opts": [
-                "QMAKE_CFLAGS_ISYSTEM=",
-                "QMAKE_LIBDIR=/app/lib",
-                "QMAKE_CXXFLAGS+=-fext-numeric-literals",
-                "CONFIG-=experimental",
-                "CONFIG-=debug"
+		"-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+		"-DEXPERIMENTAL=ON",
+		"-DSNAPSHOT=ON",
+		"-DSUFFIX=nightly"
             ],
             "cleanup": [
                 "/share/pixmaps"
@@ -213,26 +227,13 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://files.openscad.org/openscad-2021.01.src.tar.gz",
-                    "sha256": "d938c297e7e5f65dbab1461cac472fc60dfeaa4999ea2c19b31a4184f2d70359"
-                },
-                {
-                    "type": "patch",
-                    "path": "openscad-comment-parser-fix.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "openscad-dxf-loader-fix.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "openscad-mouse-selector-fix.patch"
+                    "url": "https://github.com/openscad/openscad/archive/27227d9d7a4d9172a570066bbfff9ef04d4903d2.tar.gz"
+                    "sha256": "06771b2490cdcb1ee436f06f5fa59fb2767b4b2ce621e2241bc8997d897eb02c"
                 }
             ],
             "post-install": [
                 "mv /app/share/mime/packages/openscad.xml /app/share/mime/packages/org.openscad.OpenSCAD.xml",
                 "sed -i -e 's|<icon name=\"openscad\"/>|<icon name=\"org.openscad.OpenSCAD\"/>|' /app/share/mime/packages/org.openscad.OpenSCAD.xml",
-                "sed -i -e '/<release /d; /<.releases>/i\\    <release date=\"2021-01-31\" version=\"2021.01\"/>' /app/share/metainfo/org.openscad.OpenSCAD.appdata.xml"
             ]
         }
     ]
