@@ -3,9 +3,9 @@
     "runtime": "org.kde.Platform",
     "runtime-version": "5.15-21.08",
     "sdk": "org.kde.Sdk",
-    "command": "openscad",
-    "rename-desktop-file": "openscad.desktop",
-    "rename-icon": "openscad",
+    "command": "openscad-nightly",
+    "rename-desktop-file": "openscad-nightly.desktop",
+    "rename-icon": "openscad-nightly",
     "finish-args": [
         "--socket=x11",
         "--socket=fallback-x11",
