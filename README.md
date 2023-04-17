@@ -17,3 +17,14 @@ flatpak install flathub org.openscad.OpenSCAD
 ```
 flatpak run org.openscad.OpenSCAD
 ```
+
+## Beta versions
+It's possible to install and run the beta builds in parallel using the following
+commands:
+```
+flatpak remote-add --user --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
+flatpak install --user flathub-beta org.openscad.OpenSCAD
+flatpak run org.openscad.OpenSCAD//beta
+```
+This uses the `--user` flag which makes the installed beta application only visible
+to the current user.
