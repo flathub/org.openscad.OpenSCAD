@@ -28,8 +28,8 @@ modules:
       - ./b2 -j $FLATPAK_BUILDER_N_JOBS install --prefix=/app
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/boost_1_78_0.tar.bz2
-        sha256: 8681f175d4bdb26c52222665793eef08490d7758529330f98d3b29dd0735bccc
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82_0.tar.bz2
+        sha256: a6e1ab9b0860e6a2881dd7b21fe9f737a095e5f33a3a874afc6a345228597ee6
   - shared-modules/glew/glew.json
   - shared-modules/glu/glu-9.json
   - name: freeglut
@@ -43,13 +43,13 @@ modules:
       cxxflags: -fcommon
     sources:
       - type: archive
-        url: https://sourceforge.net/projects/freeglut/files/freeglut/3.2.1/freeglut-3.2.1.tar.gz
-        sha256: d4000e02102acaf259998c870e25214739d1f16f67f99cb35e4f46841399da68
+        url: https://github.com/FreeGLUTProject/freeglut/releases/download/v3.4.0/freeglut-3.4.0.tar.gz
+        sha256: 3c0bcb915d9b180a97edaebd011b7a1de54583a838644dcd42bb0ea0c6f3eaec
   - name: libXmu
     sources:
       - type: archive
-        url: https://www.x.org/archive//individual/lib/libXmu-1.1.3.tar.bz2
-        sha256: 9c343225e7c3dc0904f2122b562278da5fed639b1b5e880d25111561bac5b731
+        url: https://www.x.org/archive/individual/lib/libXmu-1.1.4.tar.xz
+        sha256: 210de3ab9c3e9382572c25d17c2518a854ce6e2c62c5f8315deac7579e758244
   - name: eigen
     builddir: true
     buildsystem: cmake-ninja
@@ -89,15 +89,15 @@ modules:
         path: opencsg-libs.patch
   - name: qscintilla
     buildsystem: qmake
-    subdir: Qt4Qt5
+    subdir: src
     sources:
       - type: archive
-        url: https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.11.6/QScintilla-2.11.6.tar.gz
-        sha256: e7346057db47d2fb384467fafccfcb13aa0741373c5d593bc72b55b2f0dd20a7
+        url: https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.13.4/QScintilla_src-2.13.4.tar.gz
+        sha256: 890c261f31e116f426b0ea03a136d44fc89551ebfd126d7b0bdf8a7197879986
       - type: patch
         path: qscintilla-lib-paths.patch
   - name: double-conversion
-    buildsystem: cmake
+    buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
@@ -106,7 +106,7 @@ modules:
         url: https://github.com/google/double-conversion/archive/refs/tags/v3.2.1.tar.gz
         sha256: e40d236343cad807e83d192265f139481c51fc83a1c49e406ac6ce0a0ba7cd35
   - name: tbb
-    buildsystem: cmake
+    buildsystem: cmake-ninja
     config-opts:
       - -DTBB_TEST=OFF
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
@@ -116,7 +116,7 @@ modules:
         url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.9.0.tar.gz
         sha256: 1ce48f34dada7837f510735ff1172f6e2c261b09460e3bf773b49791d247d24e
   - name: lib3mf
-    buildsystem: cmake
+    buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
@@ -159,5 +159,6 @@ modules:
       - mv /app/share/mime/packages/openscad.xml /app/share/mime/packages/org.openscad.OpenSCAD.xml
       - sed -i -e 's|<icon name="openscad"/>|<icon name="org.openscad.OpenSCAD"/>|'
         /app/share/mime/packages/org.openscad.OpenSCAD.xml
-      - sed -i -e '/<releases>/a\\    <release date="2023-04-17" version="2023.04.17"/>'
+      - export V=$(git log -1 --date="format:%Y.%m.%d.fp%j%H" --format="%cd");
+        sed -i -e "/<releases>/a\\    <release date=\"$(date +%Y-%m-%d)\" version=\"$V\"/>"
         /app/share/metainfo/org.openscad.OpenSCAD.appdata.xml
