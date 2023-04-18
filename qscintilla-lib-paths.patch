@@ -1,8 +1,7 @@
-diff --git a/Qt4Qt5/qscintilla.pro b/Qt4Qt5/qscintilla.pro
-index 514cc1e..02716e7 100644
---- a/Qt4Qt5/qscintilla.pro
-+++ b/Qt4Qt5/qscintilla.pro
-@@ -66,23 +66,23 @@ unix:!macx {
+diff -ur QScintilla_src-2.13.4.orig/src/qscintilla.pro QScintilla_src-2.13.4/src/qscintilla.pro
+--- QScintilla_src-2.13.4.orig/src/qscintilla.pro	2023-01-15 19:13:30.751242600 +0100
++++ QScintilla_src-2.13.4/src/qscintilla.pro	2023-04-18 01:42:25.794709139 +0200
+@@ -70,22 +70,22 @@
  # Scintilla namespace rather than pollute the global namespace.
  #DEFINES += SCI_NAMESPACE
  
@@ -25,9 +24,8 @@ index 514cc1e..02716e7 100644
  qsci.files = ../qsci
  INSTALLS += qsci
  
- greaterThan(QT_MAJOR_VERSION, 4) {
--    features.path = $$[QT_HOST_DATA]/mkspecs/features
-+    features.path = /app/lib/qt5/mkspecs/features
+-features.path = $$[QT_HOST_DATA]/mkspecs/features
++features.path = /app/lib/qt5/mkspecs/features
+ CONFIG(staticlib) {
+     features.files = $$PWD/features_staticlib/qscintilla2.prf
  } else {
-     features.path = $$[QT_INSTALL_DATA]/mkspecs/features
- }
