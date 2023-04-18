@@ -159,5 +159,6 @@ modules:
       - mv /app/share/mime/packages/openscad.xml /app/share/mime/packages/org.openscad.OpenSCAD.xml
       - sed -i -e 's|<icon name="openscad"/>|<icon name="org.openscad.OpenSCAD"/>|'
         /app/share/mime/packages/org.openscad.OpenSCAD.xml
-      - sed -i -e '/<releases>/a\\    <release date="2023-04-17" version="2023.04.17"/>'
+      - export V=$(git log -1 --date="format:%Y.%m.%d.fp%j%H" --format="%cd");
+        sed -i -e "/<releases>/a\\    <release date=\"$(date +%Y-%m-%d)\" version=\"$V\"/>"
         /app/share/metainfo/org.openscad.OpenSCAD.appdata.xml
