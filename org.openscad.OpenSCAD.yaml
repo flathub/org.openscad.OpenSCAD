@@ -150,6 +150,8 @@ modules:
         path: openscad-cgal-debug-fix.patch
       - type: patch
         path: openscad-join-fix.patch
+      - type: patch
+        path: openscad-double-click-fix.patch
     post-install:
       - mv /app/share/mime/packages/openscad.xml /app/share/mime/packages/org.openscad.OpenSCAD.xml
       - sed -i -e 's|<icon name="openscad"/>|<icon name="org.openscad.OpenSCAD"/>|'
