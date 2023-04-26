@@ -1,0 +1,11 @@
+diff -ur openscad-2021.01.orig/src/QGLView.cc openscad-2021.01/src/QGLView.cc
+--- openscad-2021.01.orig/src/QGLView.cc	2021-01-31 21:17:41.000000000 +0100
++++ openscad-2021.01/src/QGLView.cc	2023-04-26 22:33:50.001274026 +0200
+@@ -204,6 +204,7 @@
+ 
+ void QGLView::mouseDoubleClickEvent (QMouseEvent *event) {
+ 
++	this->makeCurrent();
+ 	setupCamera();
+ 
+ 	int viewport[4];

@@ -1,0 +1,160 @@
+app-id: org.openscad.OpenSCAD
+runtime: org.kde.Platform
+runtime-version: 5.15-22.08
+sdk: org.kde.Sdk
+command: openscad
+rename-desktop-file: openscad.desktop
+rename-icon: openscad
+finish-args:
+  - --socket=x11
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --share=ipc
+  - --device=dri
+  - --filesystem=home
+cleanup:
+  - /include
+  - /lib/cmake
+  - /lib/pkgconfig
+  - /share/man
+  - '*.a'
+modules:
+  - name: boost
+    buildsystem: simple
+    build-commands:
+      - ./bootstrap.sh --with-libraries=filesystem,program_options,regex,thread,system
+      - ./b2 -j $FLATPAK_BUILDER_N_JOBS install --prefix=/app
+    sources:
+      - type: archive
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82_0.tar.bz2
+        sha256: a6e1ab9b0860e6a2881dd7b21fe9f737a095e5f33a3a874afc6a345228597ee6
+  - shared-modules/glew/glew.json
+  - shared-modules/glu/glu-9.json
+  - name: freeglut
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
+    build-options:
+      cflags: -fcommon
+      cxxflags: -fcommon
+    sources:
+      - type: archive
+        url: https://github.com/FreeGLUTProject/freeglut/releases/download/v3.4.0/freeglut-3.4.0.tar.gz
+        sha256: 3c0bcb915d9b180a97edaebd011b7a1de54583a838644dcd42bb0ea0c6f3eaec
+  - name: libXmu
+    sources:
+      - type: archive
+        url: https://www.x.org/archive/individual/lib/libXmu-1.1.4.tar.xz
+        sha256: 210de3ab9c3e9382572c25d17c2518a854ce6e2c62c5f8315deac7579e758244
+  - name: eigen
+    builddir: true
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+    cleanup:
+      - /share
+    sources:
+      - type: archive
+        url: https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.bz2
+        sha256: b4c198460eba6f28d34894e3a5710998818515104d6e74e5cc331ce31e46e626
+  - name: mpfr
+    sources:
+      - type: archive
+        url: https://www.mpfr.org/mpfr-current/mpfr-4.2.0.tar.xz
+        sha256: 06a378df13501248c1b2db5aa977a2c8126ae849a9d9b7be2546fb4a9c26d993
+  - name: cgal
+    cleanup:
+      - /bin
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+    sources:
+      - type: archive
+        url: https://github.com/CGAL/cgal/releases/download/v5.5.2/CGAL-5.5.2-library.zip
+        sha256: 77b17ba5d43fe844c0eca7fb7eff7d5687174b037290c390f1251ef44cc4909b
+  - name: opencsg
+    no-autogen: true
+    no-parallel-make: true
+    cleanup:
+      - /bin
+    sources:
+      - type: archive
+        url: https://www.opencsg.org/OpenCSG-1.5.0.tar.gz
+        sha256: bf2573acf3f8ee634aee074db2406e125a77b262b73ef2a65eff28664051174a
+      - type: patch
+        path: opencsg-libs.patch
+  - name: qscintilla
+    buildsystem: qmake
+    subdir: src
+    sources:
+      - type: archive
+        url: https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.13.4/QScintilla_src-2.13.4.tar.gz
+        sha256: 890c261f31e116f426b0ea03a136d44fc89551ebfd126d7b0bdf8a7197879986
+      - type: patch
+        path: qscintilla-lib-paths.patch
+  - name: double-conversion
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
+    sources:
+      - type: archive
+        url: https://github.com/google/double-conversion/archive/refs/tags/v3.2.1.tar.gz
+        sha256: e40d236343cad807e83d192265f139481c51fc83a1c49e406ac6ce0a0ba7cd35
+  - name: lib3mf
+    buildsystem: cmake
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
+      - -DLIB3MF_TESTS=OFF
+      - -DUSE_INCLUDED_LIBZIP=OFF
+    sources:
+      - type: archive
+        url: https://github.com/3MFConsortium/lib3mf/archive/v1.8.1.tar.gz
+        sha256: 207dd142c9ca86a4fb1a4b2baadbdf579f35e03f9b8bf5c02dae027da5ae9d17
+  - name: libzip
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
+      - -DCMAKE_INSTALL_INCLUDEDIR:PATH=/app/include
+    sources:
+      - type: archive
+        url: https://libzip.org/download/libzip-1.9.2.tar.xz
+        sha256: c93e9852b7b2dc931197831438fee5295976ee0ba24f8524a8907be5c2ba5937
+  - name: openscad
+    buildsystem: qmake
+    config-opts:
+      - QMAKE_CFLAGS_ISYSTEM=
+      - QMAKE_LIBDIR=/app/lib
+      - QMAKE_CXXFLAGS+=-fext-numeric-literals
+      - CONFIG-=experimental
+      - CONFIG-=debug
+    cleanup:
+      - /share/pixmaps
+    sources:
+      - type: archive
+        url: https://files.openscad.org/openscad-2021.01.src.tar.gz
+        sha256: d938c297e7e5f65dbab1461cac472fc60dfeaa4999ea2c19b31a4184f2d70359
+      - type: patch
+        path: openscad-comment-parser-fix.patch
+      - type: patch
+        path: openscad-dxf-loader-fix.patch
+      - type: patch
+        path: openscad-mouse-selector-fix.patch
+      - type: patch
+        path: openscad-cgal-projection-fix.patch
+      - type: patch
+        path: openscad-cgal-debug-fix.patch
+      - type: patch
+        path: openscad-join-fix.patch
+      - type: patch
+        path: openscad-double-click-fix.patch
+    post-install:
+      - mv /app/share/mime/packages/openscad.xml /app/share/mime/packages/org.openscad.OpenSCAD.xml
+      - sed -i -e 's|<icon name="openscad"/>|<icon name="org.openscad.OpenSCAD"/>|'
+        /app/share/mime/packages/org.openscad.OpenSCAD.xml
+      - sed -i -e '/<release /d; /<.releases>/i\    <release date="2021-01-31" version="2021.01"/>'
+        /app/share/metainfo/org.openscad.OpenSCAD.appdata.xml
