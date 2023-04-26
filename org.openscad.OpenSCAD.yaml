@@ -95,14 +95,14 @@ modules:
       - type: patch
         path: qscintilla-lib-paths.patch
   - name: double-conversion
-    buildsystem: cmake
+    buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
     sources:
       - type: archive
-        url: https://github.com/google/double-conversion/archive/v3.1.5.tar.gz
-        sha256: a63ecb93182134ba4293fd5f22d6e08ca417caafa244afaa751cbfddf6415b13
+        url: https://github.com/google/double-conversion/archive/refs/tags/v3.2.1.tar.gz
+        sha256: e40d236343cad807e83d192265f139481c51fc83a1c49e406ac6ce0a0ba7cd35
   - name: lib3mf
     buildsystem: cmake
     config-opts:
