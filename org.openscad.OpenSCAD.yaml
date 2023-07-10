@@ -92,8 +92,8 @@ modules:
     subdir: src
     sources:
       - type: archive
-        url: https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.13.4/QScintilla_src-2.13.4.tar.gz
-        sha256: 890c261f31e116f426b0ea03a136d44fc89551ebfd126d7b0bdf8a7197879986
+        url: https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.14.1/QScintilla_src-2.14.1.tar.gz
+        sha256: dfe13c6acc9d85dfcba76ccc8061e71a223957a6c02f3c343b30a9d43a4cdd4d
       - type: patch
         path: qscintilla-lib-paths.patch
   - name: double-conversion
@@ -103,8 +103,8 @@ modules:
       - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
     sources:
       - type: archive
-        url: https://github.com/google/double-conversion/archive/refs/tags/v3.2.1.tar.gz
-        sha256: e40d236343cad807e83d192265f139481c51fc83a1c49e406ac6ce0a0ba7cd35
+        url: https://github.com/google/double-conversion/archive/refs/tags/v3.3.0.tar.gz
+        sha256: 04ec44461850abbf33824da84978043b22554896b552c5fd11a9c5ae4b4d296e
   - name: tbb
     buildsystem: cmake-ninja
     config-opts:
@@ -115,6 +115,16 @@ modules:
       - type: archive
         url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.9.0.tar.gz
         sha256: 1ce48f34dada7837f510735ff1172f6e2c261b09460e3bf773b49791d247d24e
+  - name: libzip
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
+      - -DCMAKE_INSTALL_INCLUDEDIR:PATH=/app/include
+    sources:
+      - type: archive
+        url: https://libzip.org/download/libzip-1.10.0.tar.xz
+        sha256: cd2a7ac9f1fb5bfa6218272d9929955dc7237515bba6e14b5ad0e1d1e2212b43
   - name: lib3mf
     buildsystem: cmake-ninja
     config-opts:
@@ -124,18 +134,8 @@ modules:
       - -DUSE_INCLUDED_LIBZIP=OFF
     sources:
       - type: archive
-        url: https://github.com/3MFConsortium/lib3mf/archive/v1.8.1.tar.gz
-        sha256: 207dd142c9ca86a4fb1a4b2baadbdf579f35e03f9b8bf5c02dae027da5ae9d17
-  - name: libzip
-    buildsystem: cmake-ninja
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
-      - -DCMAKE_INSTALL_INCLUDEDIR:PATH=/app/include
-    sources:
-      - type: archive
-        url: https://libzip.org/download/libzip-1.9.2.tar.xz
-        sha256: c93e9852b7b2dc931197831438fee5295976ee0ba24f8524a8907be5c2ba5937
+        url: https://github.com/3MFConsortium/lib3mf/archive/v2.2.0.tar.gz
+        sha256: 96e85e278fc5474123e3c47237dd42faaf1fdf8e182541a84af7fe84ddd3cbde
   - name: libspnav
     sources:
       - type: archive
@@ -153,7 +153,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/openscad/openscad.git
-        commit: a144370a6965e7bf51291ef01b345345679dffc0
+        commit: 44fdb2c46b5b3211bb9ca4264dcb67167956a7d7
     post-install:
       - mv /app/share/applications/openscad.desktop /app/share/applications/openscad-nightly.desktop
       - mv /app/share/mime/packages/openscad.xml /app/share/mime/packages/org.openscad.OpenSCAD.xml
