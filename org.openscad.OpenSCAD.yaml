@@ -74,8 +74,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://github.com/CGAL/cgal/releases/download/v5.5.2/CGAL-5.5.2-library.zip
-        sha256: 77b17ba5d43fe844c0eca7fb7eff7d5687174b037290c390f1251ef44cc4909b
+        url: https://github.com/CGAL/cgal/releases/download/v5.6/CGAL-5.6-library.zip
+        sha256: aea66cfa617dfdb7450844969b2e0b2a3e83319fee1c358bc8b027943f64a247
   - name: opencsg
     no-autogen: true
     no-parallel-make: true
@@ -113,8 +113,8 @@ modules:
       - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.9.0.tar.gz
-        sha256: 1ce48f34dada7837f510735ff1172f6e2c261b09460e3bf773b49791d247d24e
+        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.10.0.tar.gz
+        sha256: 487023a955e5a3cc6d3a0d5f89179f9b6c0ae7222613a7185b0227ba0c83700b
   - name: libzip
     buildsystem: cmake-ninja
     config-opts:
@@ -153,7 +153,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/openscad/openscad.git
-        commit: 44fdb2c46b5b3211bb9ca4264dcb67167956a7d7
+        commit: 87bf17e53aac352c5f45dbdb05a4e05376512acb
     post-install:
       - mv /app/share/applications/openscad.desktop /app/share/applications/openscad-nightly.desktop
       - mv /app/share/mime/packages/openscad.xml /app/share/mime/packages/org.openscad.OpenSCAD.xml
