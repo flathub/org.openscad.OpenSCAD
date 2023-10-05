@@ -28,8 +28,8 @@ modules:
       - ./b2 -j $FLATPAK_BUILDER_N_JOBS install --prefix=/app
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82_0.tar.bz2
-        sha256: a6e1ab9b0860e6a2881dd7b21fe9f737a095e5f33a3a874afc6a345228597ee6
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.83.0/source/boost_1_83_0.tar.bz2
+        sha256: 6478edfe2f3305127cffe8caf73ea0176c53769f4bf1585be237eb30798c3b8e
   - shared-modules/glew/glew.json
   - shared-modules/glu/glu-9.json
   - name: freeglut
@@ -64,8 +64,8 @@ modules:
   - name: mpfr
     sources:
       - type: archive
-        url: https://www.mpfr.org/mpfr-current/mpfr-4.2.0.tar.xz
-        sha256: 06a378df13501248c1b2db5aa977a2c8126ae849a9d9b7be2546fb4a9c26d993
+        url: https://www.mpfr.org/mpfr-current/mpfr-4.2.1.tar.xz
+        sha256: 277807353a6726978996945af13e52829e3abd7a9a5b7fb2793894e18f1fcbb2
   - name: cgal
     cleanup:
       - /bin
@@ -83,8 +83,8 @@ modules:
       - /bin
     sources:
       - type: archive
-        url: https://www.opencsg.org/OpenCSG-1.5.0.tar.gz
-        sha256: bf2573acf3f8ee634aee074db2406e125a77b262b73ef2a65eff28664051174a
+        url: https://www.opencsg.org/OpenCSG-1.6.0.tar.gz
+        sha256: bf8fb80e3e0ce11d87dd78dd15a0de872dbb8972d87f5f89cffc461efad47be8
       - type: patch
         path: opencsg-libs.patch
   - name: qscintilla
@@ -123,8 +123,8 @@ modules:
       - -DCMAKE_INSTALL_INCLUDEDIR:PATH=/app/include
     sources:
       - type: archive
-        url: https://libzip.org/download/libzip-1.10.0.tar.xz
-        sha256: cd2a7ac9f1fb5bfa6218272d9929955dc7237515bba6e14b5ad0e1d1e2212b43
+        url: https://libzip.org/download/libzip-1.10.1.tar.xz
+        sha256: dc3c8d5b4c8bbd09626864f6bcf93de701540f761d76b85d7c7d710f4bd90318
   - name: lib3mf
     buildsystem: cmake-ninja
     config-opts:
@@ -153,7 +153,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/openscad/openscad.git
-        commit: 05b962168cce9bc30b967a19514c490b495bd732
+        commit: f41aefc37c7e1232ef0d0aea17022771b18be49b
     post-install:
       - mv /app/share/applications/openscad.desktop /app/share/applications/openscad-nightly.desktop
       - mv /app/share/mime/packages/openscad.xml /app/share/mime/packages/org.openscad.OpenSCAD.xml
