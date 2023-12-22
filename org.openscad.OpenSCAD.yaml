@@ -152,8 +152,8 @@ modules:
       - /share/pixmaps
     sources:
       - type: git
-        url: https://github.com/openscad/openscad.git
-        commit: b1a2adfa8929a48ed94c02c84429a8640c9a5557
+        url: https://github.com/paolostivanin/openscad.git
+        commit: 5172d84cc6dee0b40621d5efd47958511889f263
     post-install:
       - mv /app/share/applications/openscad.desktop /app/share/applications/openscad-nightly.desktop
       - mv /app/share/mime/packages/openscad.xml /app/share/mime/packages/org.openscad.OpenSCAD.xml
