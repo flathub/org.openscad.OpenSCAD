@@ -1,6 +1,6 @@
 app-id: org.openscad.OpenSCAD
 runtime: org.kde.Platform
-runtime-version: 5.15-22.08
+runtime-version: 5.15-23.08
 sdk: org.kde.Sdk
 command: openscad
 rename-desktop-file: openscad-nightly.desktop
@@ -153,7 +153,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/openscad/openscad.git
-        commit: 05b962168cce9bc30b967a19514c490b495bd732
+        commit: b1a2adfa8929a48ed94c02c84429a8640c9a5557
     post-install:
       - mv /app/share/applications/openscad.desktop /app/share/applications/openscad-nightly.desktop
       - mv /app/share/mime/packages/openscad.xml /app/share/mime/packages/org.openscad.OpenSCAD.xml
