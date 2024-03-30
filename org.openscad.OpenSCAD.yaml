@@ -10,7 +10,6 @@ rename-mime-icons:
 rename-mime-file: openscad.xml
 copy-icon: true
 finish-args:
-  - --socket=x11
   - --socket=fallback-x11
   - --socket=wayland
   - --share=ipc
