@@ -5,6 +5,10 @@ sdk: org.kde.Sdk
 command: openscad
 rename-desktop-file: openscad.desktop
 rename-icon: openscad
+rename-mime-icons:
+  - openscad
+rename-mime-file: openscad.xml
+copy-icon: true
 finish-args:
   - --socket=x11
   - --socket=fallback-x11
@@ -150,8 +154,5 @@ modules:
           - openscad-double-click-fix.patch
           - openscad-appdata.patch
     post-install:
-      - mv /app/share/mime/packages/openscad.xml /app/share/mime/packages/org.openscad.OpenSCAD.xml
-      - sed -i -e 's|<icon name="openscad"/>|<icon name="org.openscad.OpenSCAD"/>|'
-        /app/share/mime/packages/org.openscad.OpenSCAD.xml
       - sed -i -e '/<release /d; /<.releases>/i\    <release date="2021-01-31" version="2021.01"/>'
         /app/share/metainfo/org.openscad.OpenSCAD.appdata.xml
