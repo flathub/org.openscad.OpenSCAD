@@ -54,8 +54,8 @@ modules:
       - ./b2 -j $FLATPAK_BUILDER_N_JOBS install --prefix=/app
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82_0.tar.bz2
-        sha256: a6e1ab9b0860e6a2881dd7b21fe9f737a095e5f33a3a874afc6a345228597ee6
+        url: https://archives.boost.io/release/1.85.0/source/boost_1_85_0.tar.bz2
+        sha256: 7009fe1faa1697476bdc7027703a2badb84e849b7b0baad5086b087b971f8617
   - shared-modules/glew/glew.json
   - shared-modules/glu/glu-9.json
   - name: freeglut
@@ -74,8 +74,8 @@ modules:
   - name: libXmu
     sources:
       - type: archive
-        url: https://www.x.org/archive/individual/lib/libXmu-1.1.4.tar.xz
-        sha256: 210de3ab9c3e9382572c25d17c2518a854ce6e2c62c5f8315deac7579e758244
+        url: https://www.x.org/archive/individual/lib/libXmu-1.2.1.tar.xz
+        sha256: fcb27793248a39e5fcc5b9c4aec40cc0734b3ca76aac3d7d1c264e7f7e14e8b2
   - name: eigen
     builddir: true
     buildsystem: cmake-ninja
@@ -90,8 +90,8 @@ modules:
   - name: mpfr
     sources:
       - type: archive
-        url: https://www.mpfr.org/mpfr-current/mpfr-4.2.0.tar.xz
-        sha256: 06a378df13501248c1b2db5aa977a2c8126ae849a9d9b7be2546fb4a9c26d993
+        url: https://www.mpfr.org/mpfr-current/mpfr-4.2.1.tar.xz
+        sha256: 277807353a6726978996945af13e52829e3abd7a9a5b7fb2793894e18f1fcbb2
   - name: cgal
     cleanup:
       - /bin
@@ -100,8 +100,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://github.com/CGAL/cgal/releases/download/v5.6/CGAL-5.6-library.zip
-        sha256: aea66cfa617dfdb7450844969b2e0b2a3e83319fee1c358bc8b027943f64a247
+        url: https://github.com/CGAL/cgal/releases/download/v5.6.1/CGAL-5.6.1-library.tar.xz
+        sha256: 6640f91dad9956764db27440932ac3a2f6269bf8066690f639dd7e995e3e1925
   - name: qscintilla
     buildsystem: qmake
     subdir: src
@@ -128,8 +128,8 @@ modules:
       - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.10.0.tar.gz
-        sha256: 487023a955e5a3cc6d3a0d5f89179f9b6c0ae7222613a7185b0227ba0c83700b
+        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.12.0.tar.gz
+        sha256: c7bb7aa69c254d91b8f0041a71c5bcc3936acb64408a1719aec0b2b7639dd84f
   - name: libzip
     buildsystem: cmake-ninja
     config-opts:
@@ -138,8 +138,8 @@ modules:
       - -DCMAKE_INSTALL_INCLUDEDIR:PATH=/app/include
     sources:
       - type: archive
-        url: https://libzip.org/download/libzip-1.10.0.tar.xz
-        sha256: cd2a7ac9f1fb5bfa6218272d9929955dc7237515bba6e14b5ad0e1d1e2212b43
+        url: https://libzip.org/download/libzip-1.10.1.tar.xz
+        sha256: dc3c8d5b4c8bbd09626864f6bcf93de701540f761d76b85d7c7d710f4bd90318
   - name: lib3mf
     buildsystem: cmake-ninja
     config-opts:
@@ -149,8 +149,8 @@ modules:
       - -DUSE_INCLUDED_LIBZIP=OFF
     sources:
       - type: archive
-        url: https://github.com/3MFConsortium/lib3mf/archive/v2.2.0.tar.gz
-        sha256: 96e85e278fc5474123e3c47237dd42faaf1fdf8e182541a84af7fe84ddd3cbde
+        url: https://github.com/3MFConsortium/lib3mf/archive/refs/tags/v2.3.1.tar.gz
+        sha256: cdf6669f2aa0b7f3053cdf635b71f2cf34d98f9edb9b65432dde0d85c646ec71
   - name: libspnav
     sources:
       - type: archive
