@@ -208,3 +208,4 @@ modules:
       - export V=$(git log -1 --date="format:%Y.%m.%d.fp%j%H" --format="%cd");
         sed -i -e "/<releases>/a\\    <release date=\"$(date +%Y-%m-%d)\" version=\"$V\"/>"
         /app/share/metainfo/org.openscad.OpenSCAD.appdata.xml
+      - sed -e '/<icon/d' ~/projects/o/openscad-branch/openscad.appdata.xml
