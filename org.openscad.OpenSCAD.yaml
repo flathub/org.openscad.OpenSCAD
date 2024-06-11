@@ -3,8 +3,10 @@ runtime: org.kde.Platform
 runtime-version: 5.15-23.08
 sdk: org.kde.Sdk
 command: openscad
-rename-desktop-file: openscad-nightly.desktop
 rename-icon: openscad-nightly
+rename-mime-file: openscad.xml
+rename-desktop-file: openscad.desktop
+rename-appdata-file: openscad.appdata.xml
 finish-args:
   - --socket=x11
   - --socket=fallback-x11
@@ -200,12 +202,3 @@ modules:
       - type: git
         url: https://github.com/openscad/openscad.git
         commit: 6db5adc0c4fbe825eab7e839ff9617e7806e4e38
-    post-install:
-      - mv /app/share/applications/openscad.desktop /app/share/applications/openscad-nightly.desktop
-      - mv /app/share/mime/packages/openscad.xml /app/share/mime/packages/org.openscad.OpenSCAD.xml
-      - sed -i -e 's|<icon name="openscad"/>|<icon name="org.openscad.OpenSCAD"/>|'
-        /app/share/mime/packages/org.openscad.OpenSCAD.xml
-      - export V=$(git log -1 --date="format:%Y.%m.%d.fp%j%H" --format="%cd");
-        sed -i -e "/<releases>/a\\    <release date=\"$(date +%Y-%m-%d)\" version=\"$V\"/>"
-        /app/share/metainfo/org.openscad.OpenSCAD.appdata.xml
-      - sed -e '/<icon/d' ~/projects/o/openscad-branch/openscad.appdata.xml
