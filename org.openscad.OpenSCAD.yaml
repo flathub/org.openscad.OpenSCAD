@@ -2,11 +2,14 @@ app-id: org.openscad.OpenSCAD
 runtime: org.kde.Platform
 runtime-version: 5.15-23.08
 sdk: org.kde.Sdk
-command: openscad
+command: openscad-nightly
 rename-icon: openscad-nightly
-rename-mime-file: openscad.xml
-rename-desktop-file: openscad.desktop
-rename-appdata-file: openscad.appdata.xml
+rename-mime-file: openscad-nightly.xml
+rename-mime-icons:
+  - openscad-nightly
+rename-desktop-file: openscad-nightly.desktop
+rename-appdata-file: org.openscad.OpenSCAD-nightly.appdata.xml
+copy-icon: true
 finish-args:
   - --socket=x11
   - --socket=fallback-x11
@@ -195,6 +198,7 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DEXPERIMENTAL=ON
       - -DSNAPSHOT=ON
+      - -DSUFFIX=nightly
       - -DUSE_BUILTIN_OPENCSG=ON
     cleanup:
       - /share/pixmaps
@@ -202,3 +206,5 @@ modules:
       - type: git
         url: https://github.com/openscad/openscad.git
         commit: 6db5adc0c4fbe825eab7e839ff9617e7806e4e38
+    post-install:
+      - sed -i -e 's/\(<id>org.openscad.OpenSCAD\)-nightly/\1/' /app/share/metainfo/org.openscad.OpenSCAD-nightly.appdata.xml
