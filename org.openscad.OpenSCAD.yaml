@@ -1,14 +1,20 @@
 app-id: org.openscad.OpenSCAD
 runtime: org.kde.Platform
-runtime-version: 5.15-22.08
+runtime-version: 5.15-23.08
 sdk: org.kde.Sdk
-command: openscad
-rename-desktop-file: openscad-nightly.desktop
+command: openscad-nightly
 rename-icon: openscad-nightly
+rename-mime-file: openscad-nightly.xml
+rename-mime-icons:
+  - openscad-nightly
+rename-desktop-file: openscad-nightly.desktop
+rename-appdata-file: org.openscad.OpenSCAD-nightly.appdata.xml
+copy-icon: true
 finish-args:
   - --socket=x11
   - --socket=fallback-x11
   - --socket=wayland
+  - --socket=pulseaudio
   - --share=ipc
   - --device=dri
   - --filesystem=home
@@ -21,6 +27,32 @@ cleanup:
   - /share/man
   - '*.a'
 modules:
+  - name: glm
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
+      - -DGLM_BUILD_TESTS=OFF
+      - -DBUILD_SHARED_LIBS=OFF
+    sources:
+      - type: archive
+        url: https://github.com/g-truc/glm/archive/refs/tags/1.0.1.tar.gz
+        sha256: 9f3174561fd26904b23f0db5e560971cbf9b3cbda0b280f04d5c379d03bf234c
+  - name: polyclipping2
+    buildsystem: cmake-ninja
+    builddir: true
+    subdir: CPP
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
+      - -DCLIPPER2_UTILS=OFF
+      - -DCLIPPER2_EXAMPLES=OFF
+      - -DCLIPPER2_TESTS=OFF
+    sources:
+      - type: archive
+        url: https://github.com/AngusJohnson/Clipper2/archive/ff378668baae3570e9d8070aa9eb339bdd5a6aba.tar.gz
+        sha256: 476b054290f0b62645542bc7818ee255990747526fc7a76643fed899754ce6c8
   - name: boost
     buildsystem: simple
     build-commands:
@@ -28,8 +60,8 @@ modules:
       - ./b2 -j $FLATPAK_BUILDER_N_JOBS install --prefix=/app
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82_0.tar.bz2
-        sha256: a6e1ab9b0860e6a2881dd7b21fe9f737a095e5f33a3a874afc6a345228597ee6
+        url: https://archives.boost.io/release/1.85.0/source/boost_1_85_0.tar.bz2
+        sha256: 7009fe1faa1697476bdc7027703a2badb84e849b7b0baad5086b087b971f8617
   - shared-modules/glew/glew.json
   - shared-modules/glu/glu-9.json
   - name: freeglut
@@ -48,8 +80,8 @@ modules:
   - name: libXmu
     sources:
       - type: archive
-        url: https://www.x.org/archive/individual/lib/libXmu-1.1.4.tar.xz
-        sha256: 210de3ab9c3e9382572c25d17c2518a854ce6e2c62c5f8315deac7579e758244
+        url: https://www.x.org/archive/individual/lib/libXmu-1.2.1.tar.xz
+        sha256: fcb27793248a39e5fcc5b9c4aec40cc0734b3ca76aac3d7d1c264e7f7e14e8b2
   - name: eigen
     builddir: true
     buildsystem: cmake-ninja
@@ -64,8 +96,8 @@ modules:
   - name: mpfr
     sources:
       - type: archive
-        url: https://www.mpfr.org/mpfr-current/mpfr-4.2.0.tar.xz
-        sha256: 06a378df13501248c1b2db5aa977a2c8126ae849a9d9b7be2546fb4a9c26d993
+        url: https://www.mpfr.org/mpfr-current/mpfr-4.2.1.tar.xz
+        sha256: 277807353a6726978996945af13e52829e3abd7a9a5b7fb2793894e18f1fcbb2
   - name: cgal
     cleanup:
       - /bin
@@ -74,19 +106,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://github.com/CGAL/cgal/releases/download/v5.6/CGAL-5.6-library.zip
-        sha256: aea66cfa617dfdb7450844969b2e0b2a3e83319fee1c358bc8b027943f64a247
-  - name: opencsg
-    no-autogen: true
-    no-parallel-make: true
-    cleanup:
-      - /bin
-    sources:
-      - type: archive
-        url: https://www.opencsg.org/OpenCSG-1.5.0.tar.gz
-        sha256: bf2573acf3f8ee634aee074db2406e125a77b262b73ef2a65eff28664051174a
-      - type: patch
-        path: opencsg-libs.patch
+        url: https://github.com/CGAL/cgal/releases/download/v5.6.1/CGAL-5.6.1-library.tar.xz
+        sha256: 6640f91dad9956764db27440932ac3a2f6269bf8066690f639dd7e995e3e1925
   - name: qscintilla
     buildsystem: qmake
     subdir: src
@@ -113,8 +134,8 @@ modules:
       - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.10.0.tar.gz
-        sha256: 487023a955e5a3cc6d3a0d5f89179f9b6c0ae7222613a7185b0227ba0c83700b
+        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.12.0.tar.gz
+        sha256: c7bb7aa69c254d91b8f0041a71c5bcc3936acb64408a1719aec0b2b7639dd84f
   - name: libzip
     buildsystem: cmake-ninja
     config-opts:
@@ -123,8 +144,8 @@ modules:
       - -DCMAKE_INSTALL_INCLUDEDIR:PATH=/app/include
     sources:
       - type: archive
-        url: https://libzip.org/download/libzip-1.10.0.tar.xz
-        sha256: cd2a7ac9f1fb5bfa6218272d9929955dc7237515bba6e14b5ad0e1d1e2212b43
+        url: https://libzip.org/download/libzip-1.10.1.tar.xz
+        sha256: dc3c8d5b4c8bbd09626864f6bcf93de701540f761d76b85d7c7d710f4bd90318
   - name: lib3mf
     buildsystem: cmake-ninja
     config-opts:
@@ -134,13 +155,42 @@ modules:
       - -DUSE_INCLUDED_LIBZIP=OFF
     sources:
       - type: archive
-        url: https://github.com/3MFConsortium/lib3mf/archive/v2.2.0.tar.gz
-        sha256: 96e85e278fc5474123e3c47237dd42faaf1fdf8e182541a84af7fe84ddd3cbde
+        url: https://github.com/3MFConsortium/lib3mf/archive/refs/tags/v2.3.1.tar.gz
+        sha256: cdf6669f2aa0b7f3053cdf635b71f2cf34d98f9edb9b65432dde0d85c646ec71
   - name: libspnav
     sources:
       - type: archive
         url: https://github.com/FreeSpacenav/libspnav/releases/download/v1.1/libspnav-1.1.tar.gz
         sha256: 04b297f68a10db4fa40edf68d7f823ba7b9d0442f2b665181889abe2cea42759
+  - name: libcudacxx
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DLIBCUDACXX_ENABLE_CUDA=OFF
+      - -DLIBCUDACXX_ENABLE_LIBCUDACXX_TESTS=OFF
+    sources:
+      - type: archive
+        url: https://github.com/NVIDIA/libcudacxx/archive/refs/tags/1.9.0.tar.gz
+        sha256: 05b1435ad65f5bdef1bb8d1eb29dc8f0f7df34c01d77bf8686687a4603588bce
+      # make install patch from debian package
+      - type: patch
+        path: 0002-Correct-issues-with-CMake-install-rules-331.patch
+  - name: thrust
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DTHRUST_ENABLE_TESTING=OFF
+      - -DTHRUST_ENABLE_EXAMPLES=OFF
+      - -DTHRUST_INSTALL_CUB_HEADERS=OFF
+      - -DTHRUST_INSTALL_LIBCUDACXX_HEADERS=OFF
+      - -DTHRUST_HOST_SYSTEM=TBB
+      - -DTHRUST_DEVICE_SYSTEM=TBB
+    sources:
+      - type: archive
+        url: https://github.com/NVIDIA/thrust/archive/refs/tags/2.1.0.tar.gz
+        sha256: ebfa1a31867a95b8b0555ae45fc7c45538edfa5929ec718951eae0bbc7ed3108
   - name: openscad
     buildsystem: cmake
     config-opts:
@@ -148,17 +198,13 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DEXPERIMENTAL=ON
       - -DSNAPSHOT=ON
+      - -DSUFFIX=nightly
+      - -DUSE_BUILTIN_OPENCSG=ON
     cleanup:
       - /share/pixmaps
     sources:
       - type: git
         url: https://github.com/openscad/openscad.git
-        commit: 05b962168cce9bc30b967a19514c490b495bd732
+        commit: 6db5adc0c4fbe825eab7e839ff9617e7806e4e38
     post-install:
-      - mv /app/share/applications/openscad.desktop /app/share/applications/openscad-nightly.desktop
-      - mv /app/share/mime/packages/openscad.xml /app/share/mime/packages/org.openscad.OpenSCAD.xml
-      - sed -i -e 's|<icon name="openscad"/>|<icon name="org.openscad.OpenSCAD"/>|'
-        /app/share/mime/packages/org.openscad.OpenSCAD.xml
-      - export V=$(git log -1 --date="format:%Y.%m.%d.fp%j%H" --format="%cd");
-        sed -i -e "/<releases>/a\\    <release date=\"$(date +%Y-%m-%d)\" version=\"$V\"/>"
-        /app/share/metainfo/org.openscad.OpenSCAD.appdata.xml
+      - sed -i -e 's/\(<id>org.openscad.OpenSCAD\)-nightly/\1/' /app/share/metainfo/org.openscad.OpenSCAD-nightly.appdata.xml
