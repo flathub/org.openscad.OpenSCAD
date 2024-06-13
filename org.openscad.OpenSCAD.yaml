@@ -16,6 +16,8 @@ finish-args:
   - --share=ipc
   - --device=dri
   - --filesystem=home
+  - --filesystem=/run/spnav.sock:ro
+  - --env=SPNAV_SOCKET=/run/spnav.sock
 cleanup:
   - /include
   - /lib/cmake
