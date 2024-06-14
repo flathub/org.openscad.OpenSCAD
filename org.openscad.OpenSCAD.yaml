@@ -12,9 +12,12 @@ copy-icon: true
 finish-args:
   - --socket=fallback-x11
   - --socket=wayland
+  - --socket=pulseaudio
   - --share=ipc
   - --device=dri
   - --filesystem=home
+  - --filesystem=/run/spnav.sock:ro
+  - --env=SPNAV_SOCKET=/run/spnav.sock
 cleanup:
   - /include
   - /lib/cmake
@@ -84,9 +87,8 @@ modules:
       - /bin
     sources:
       - type: archive
-        url: https://www.opencsg.org/OpenCSG-1.5.0.tar.gz
-        disable-http-decompression: true
-        sha256: bf2573acf3f8ee634aee074db2406e125a77b262b73ef2a65eff28664051174a
+        url: https://github.com/floriankirsch/OpenCSG/archive/refs/tags/opencsg-1-5-1-release.tar.gz
+        sha256: 9dd466ae844c8bf48d61674312f7261bd87980ec3c0b74fd3831f8d7904cbf8d
       - type: patch
         path: opencsg-libs.patch
   - name: qscintilla
