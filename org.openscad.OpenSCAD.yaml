@@ -130,9 +130,19 @@ modules:
       - type: archive
         url: https://libzip.org/download/libzip-1.9.2.tar.xz
         sha256: c93e9852b7b2dc931197831438fee5295976ee0ba24f8524a8907be5c2ba5937
+  - name: libspnav
+    config-opts:
+      - --disable-debug
+    sources:
+      - type: git
+        url: https://github.com/FreeSpacenav/libspnav.git
+        tag: v1.1
+        commit: 1716ccf15fa59a3acaeb9805262fc23613fd6a40
   - name: openscad
     buildsystem: qmake
     config-opts:
+      - SPNAV_INCLUDEPATH=/app/include
+      - SPNAV_LIBPATH=/app/lib
       - QMAKE_CFLAGS_ISYSTEM=
       - QMAKE_LIBDIR=/app/lib
       - QMAKE_CXXFLAGS+=-fext-numeric-literals
