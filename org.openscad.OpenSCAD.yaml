@@ -11,9 +11,8 @@ rename-desktop-file: openscad-nightly.desktop
 rename-appdata-file: org.openscad.OpenSCAD-nightly.appdata.xml
 copy-icon: true
 finish-args:
-  - --socket=x11
-  - --socket=fallback-x11
   - --socket=wayland
+  - --socket=fallback-x11
   - --socket=pulseaudio
   - --share=ipc
   - --device=dri
@@ -192,7 +191,7 @@ modules:
         url: https://github.com/NVIDIA/thrust/archive/refs/tags/2.1.0.tar.gz
         sha256: ebfa1a31867a95b8b0555ae45fc7c45538edfa5929ec718951eae0bbc7ed3108
   - name: openscad
-    buildsystem: cmake
+    buildsystem: cmake-ninja
     config-opts:
       - -DENABLE_TESTS=OFF
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
