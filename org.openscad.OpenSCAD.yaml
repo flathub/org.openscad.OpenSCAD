@@ -193,17 +193,20 @@ modules:
   - name: openscad
     buildsystem: cmake-ninja
     config-opts:
-      - -DENABLE_TESTS=OFF
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DEXPERIMENTAL=ON
-      - -DSNAPSHOT=ON
-      - -DSUFFIX=nightly
       - -DUSE_BUILTIN_OPENCSG=ON
+      - -DMANIFOLD_PYBIND=OFF
+      - -DMANIFOLD_TEST=OFF
+      - -DENABLE_PYTHON=ON
+      - -DENABLE_TESTS=OFF
+      - -DEXPERIMENTAL=ON
+      - -DSUFFIX=nightly
+      - -DSNAPSHOT=ON
     cleanup:
       - /share/pixmaps
     sources:
       - type: git
         url: https://github.com/openscad/openscad.git
-        commit: 9454b4315b94445e65126a690f5a910130c7fd18
+        commit: 25ccfa69a2f0077384515ecafdd1ac966cfe319a
     post-install:
       - sed -i -e 's/\(<id>org.openscad.OpenSCAD\)-nightly/\1/' /app/share/metainfo/org.openscad.OpenSCAD-nightly.appdata.xml
