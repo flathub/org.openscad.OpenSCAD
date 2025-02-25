@@ -207,6 +207,6 @@ modules:
     sources:
       - type: git
         url: https://github.com/openscad/openscad.git
-        commit: 55a638fa43116cca812d3a0b2d24b4ba35a238b5
+        commit: 8d2a7e54c6177476594b06488a7b9f52746f10f7
     post-install:
       - sed -i -e 's/\(<id>org.openscad.OpenSCAD\)-nightly/\1/' /app/share/metainfo/org.openscad.OpenSCAD-nightly.appdata.xml
