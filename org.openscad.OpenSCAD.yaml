@@ -151,11 +151,14 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
       - -DLIB3MF_TESTS=OFF
+      - -DUSE_INCLUDED_ZLIB=OFF
       - -DUSE_INCLUDED_LIBZIP=OFF
     sources:
       - type: archive
-        url: https://github.com/3MFConsortium/lib3mf/archive/refs/tags/v2.3.1.tar.gz
-        sha256: cdf6669f2aa0b7f3053cdf635b71f2cf34d98f9edb9b65432dde0d85c646ec71
+        url: https://github.com/3MFConsortium/lib3mf/archive/refs/tags/v2.4.1.tar.gz
+        sha256: 081dea66ddd1b958644bfac0fe9a580e63726061459efce5190a10161082f8f7
+      - type: patch
+        path: patches/lib3mf-2.4.1_inc_algorithm.patch
   - name: libspnav
     sources:
       - type: archive
