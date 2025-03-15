@@ -214,3 +214,4 @@ modules:
         commit: 63dc0df6c13f9d69493834f80029dccc55b5a256
     post-install:
       - sed -i -e 's/\(<id>org.openscad.OpenSCAD\)-nightly/\1/' /app/share/metainfo/org.openscad.OpenSCAD-nightly.appdata.xml
+      - ( cd /app/bin && ln -s openscad-nightly openscad-python )
