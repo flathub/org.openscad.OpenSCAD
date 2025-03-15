@@ -50,8 +50,8 @@ modules:
       - -DCLIPPER2_TESTS=OFF
     sources:
       - type: archive
-        url: https://github.com/AngusJohnson/Clipper2/archive/ff378668baae3570e9d8070aa9eb339bdd5a6aba.tar.gz
-        sha256: 476b054290f0b62645542bc7818ee255990747526fc7a76643fed899754ce6c8
+        url: https://github.com/AngusJohnson/Clipper2/archive/refs/tags/Clipper2_1.5.2.tar.gz
+        sha256: 61b60a8a668958dafcd39443f8e0973693425666161e3ca24227097617c4d288
   - name: boost
     buildsystem: simple
     build-commands:
