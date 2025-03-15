@@ -115,7 +115,7 @@ modules:
         url: https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.14.1/QScintilla_src-2.14.1.tar.gz
         sha256: dfe13c6acc9d85dfcba76ccc8061e71a223957a6c02f3c343b30a9d43a4cdd4d
       - type: patch
-        path: qscintilla-lib-paths.patch
+        path: patches/qscintilla-lib-paths.patch
   - name: double-conversion
     buildsystem: cmake-ninja
     config-opts:
@@ -174,7 +174,7 @@ modules:
         sha256: 05b1435ad65f5bdef1bb8d1eb29dc8f0f7df34c01d77bf8686687a4603588bce
       # make install patch from debian package
       - type: patch
-        path: 0002-Correct-issues-with-CMake-install-rules-331.patch
+        path: patches/0002-Correct-issues-with-CMake-install-rules-331.patch
   - name: thrust
     buildsystem: cmake-ninja
     builddir: true
