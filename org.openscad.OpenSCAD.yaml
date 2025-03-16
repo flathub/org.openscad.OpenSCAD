@@ -1,6 +1,6 @@
 app-id: org.openscad.OpenSCAD
 runtime: org.kde.Platform
-runtime-version: 5.15-23.08
+runtime-version: "6.8"
 sdk: org.kde.Sdk
 command: openscad-nightly
 rename-icon: openscad-nightly
@@ -24,7 +24,7 @@ cleanup:
   - /lib/cmake
   - /lib/pkgconfig
   - /share/man
-  - '*.a'
+  - "*.a"
 modules:
   - name: glm
     buildsystem: cmake-ninja
@@ -50,8 +50,8 @@ modules:
       - -DCLIPPER2_TESTS=OFF
     sources:
       - type: archive
-        url: https://github.com/AngusJohnson/Clipper2/archive/ff378668baae3570e9d8070aa9eb339bdd5a6aba.tar.gz
-        sha256: 476b054290f0b62645542bc7818ee255990747526fc7a76643fed899754ce6c8
+        url: https://github.com/AngusJohnson/Clipper2/archive/refs/tags/Clipper2_1.5.2.tar.gz
+        sha256: 61b60a8a668958dafcd39443f8e0973693425666161e3ca24227097617c4d288
   - name: boost
     buildsystem: simple
     build-commands:
@@ -59,8 +59,8 @@ modules:
       - ./b2 -j $FLATPAK_BUILDER_N_JOBS install --prefix=/app
     sources:
       - type: archive
-        url: https://archives.boost.io/release/1.85.0/source/boost_1_85_0.tar.bz2
-        sha256: 7009fe1faa1697476bdc7027703a2badb84e849b7b0baad5086b087b971f8617
+        url: https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.bz2
+        sha256: af57be25cb4c4f4b413ed692fe378affb4352ea50fbe294a11ef548f4d527d89
   - shared-modules/glew/glew.json
   - shared-modules/glu/glu-9.json
   - name: freeglut
@@ -74,8 +74,8 @@ modules:
       cxxflags: -fcommon
     sources:
       - type: archive
-        url: https://github.com/FreeGLUTProject/freeglut/releases/download/v3.4.0/freeglut-3.4.0.tar.gz
-        sha256: 3c0bcb915d9b180a97edaebd011b7a1de54583a838644dcd42bb0ea0c6f3eaec
+        url: https://github.com/freeglut/freeglut/releases/download/v3.6.0/freeglut-3.6.0.tar.gz
+        sha256: 9c3d4d6516fbfa0280edc93c77698fb7303e443c1aaaf37d269e3288a6c3ea52
   - name: libXmu
     sources:
       - type: archive
@@ -105,8 +105,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://github.com/CGAL/cgal/releases/download/v5.6.1/CGAL-5.6.1-library.tar.xz
-        sha256: 6640f91dad9956764db27440932ac3a2f6269bf8066690f639dd7e995e3e1925
+        url: https://github.com/CGAL/cgal/releases/download/v6.0.1/CGAL-6.0.1-library.tar.xz
+        sha256: c752737f91d1af71fa96038f0e37945ce82a5f1fffb6200172cfcdd77755a356
   - name: qscintilla
     buildsystem: qmake
     subdir: src
@@ -115,7 +115,7 @@ modules:
         url: https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.14.1/QScintilla_src-2.14.1.tar.gz
         sha256: dfe13c6acc9d85dfcba76ccc8061e71a223957a6c02f3c343b30a9d43a4cdd4d
       - type: patch
-        path: qscintilla-lib-paths.patch
+        path: patches/qscintilla-lib-paths.patch
   - name: double-conversion
     buildsystem: cmake-ninja
     config-opts:
@@ -123,8 +123,8 @@ modules:
       - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
     sources:
       - type: archive
-        url: https://github.com/google/double-conversion/archive/refs/tags/v3.3.0.tar.gz
-        sha256: 04ec44461850abbf33824da84978043b22554896b552c5fd11a9c5ae4b4d296e
+        url: https://github.com/google/double-conversion/archive/refs/tags/v3.3.1.tar.gz
+        sha256: fe54901055c71302dcdc5c3ccbe265a6c191978f3761ce1414d0895d6b0ea90e
   - name: tbb
     buildsystem: cmake-ninja
     config-opts:
@@ -133,8 +133,8 @@ modules:
       - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2021.12.0.tar.gz
-        sha256: c7bb7aa69c254d91b8f0041a71c5bcc3936acb64408a1719aec0b2b7639dd84f
+        url: https://github.com/uxlfoundation/oneTBB/archive/refs/tags/v2022.0.0.tar.gz
+        sha256: e8e89c9c345415b17b30a2db3095ba9d47647611662073f7fbf54ad48b7f3c2a
   - name: libzip
     buildsystem: cmake-ninja
     config-opts:
@@ -143,19 +143,22 @@ modules:
       - -DCMAKE_INSTALL_INCLUDEDIR:PATH=/app/include
     sources:
       - type: archive
-        url: https://libzip.org/download/libzip-1.10.1.tar.xz
-        sha256: dc3c8d5b4c8bbd09626864f6bcf93de701540f761d76b85d7c7d710f4bd90318
+        url: https://libzip.org/download/libzip-1.11.3.tar.xz
+        sha256: 9509d878ba788271c8b5abca9cfde1720f075335686237b7e9a9e7210fe67c1b
   - name: lib3mf
     buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
       - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
       - -DLIB3MF_TESTS=OFF
+      - -DUSE_INCLUDED_ZLIB=OFF
       - -DUSE_INCLUDED_LIBZIP=OFF
     sources:
       - type: archive
-        url: https://github.com/3MFConsortium/lib3mf/archive/refs/tags/v2.3.1.tar.gz
-        sha256: cdf6669f2aa0b7f3053cdf635b71f2cf34d98f9edb9b65432dde0d85c646ec71
+        url: https://github.com/3MFConsortium/lib3mf/archive/refs/tags/v2.4.1.tar.gz
+        sha256: 081dea66ddd1b958644bfac0fe9a580e63726061459efce5190a10161082f8f7
+      - type: patch
+        path: patches/lib3mf-2.4.1_inc_algorithm.patch
   - name: libspnav
     sources:
       - type: archive
@@ -174,7 +177,7 @@ modules:
         sha256: 05b1435ad65f5bdef1bb8d1eb29dc8f0f7df34c01d77bf8686687a4603588bce
       # make install patch from debian package
       - type: patch
-        path: 0002-Correct-issues-with-CMake-install-rules-331.patch
+        path: patches/0002-Correct-issues-with-CMake-install-rules-331.patch
   - name: thrust
     buildsystem: cmake-ninja
     builddir: true
@@ -202,11 +205,13 @@ modules:
       - -DEXPERIMENTAL=ON
       - -DSUFFIX=nightly
       - -DSNAPSHOT=ON
+      - -DUSE_QT6=ON
     cleanup:
       - /share/pixmaps
     sources:
       - type: git
         url: https://github.com/openscad/openscad.git
-        commit: 8d2a7e54c6177476594b06488a7b9f52746f10f7
+        commit: 63dc0df6c13f9d69493834f80029dccc55b5a256
     post-install:
       - sed -i -e 's/\(<id>org.openscad.OpenSCAD\)-nightly/\1/' /app/share/metainfo/org.openscad.OpenSCAD-nightly.appdata.xml
+      - ( cd /app/bin && ln -s openscad-nightly openscad-python )
