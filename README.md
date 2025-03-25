@@ -18,6 +18,20 @@ flatpak install flathub org.openscad.OpenSCAD
 flatpak run org.openscad.OpenSCAD
 ```
 
+## Network access
+Network access is disabled by default. To allow OpenSCAD to access the network, e.g. for using remote
+print services, this has to be enabled in the flatpak settings.
+```
+# Run once with network access
+flatpak run --share=network org.openscad.OpenSCAD//beta
+
+# Permanently enable network access
+flatpak --user override org.openscad.OpenSCAD --share=network
+
+# Disable network access by default again
+flatpak --user override org.openscad.OpenSCAD --unshare=network
+```
+
 ## Beta versions
 It's possible to install and run the beta builds in parallel using the following
 commands:
