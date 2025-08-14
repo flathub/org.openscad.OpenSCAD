@@ -32,7 +32,7 @@ modules:
       - ./b2 -j $FLATPAK_BUILDER_N_JOBS install --prefix=/app
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82_0.tar.bz2
+        url: https://archives.boost.io/release/1.82.0/source/boost_1_82_0.tar.bz2
         sha256: a6e1ab9b0860e6a2881dd7b21fe9f737a095e5f33a3a874afc6a345228597ee6
   - shared-modules/glew/glew.json
   - shared-modules/glu/glu-9.json
@@ -68,8 +68,8 @@ modules:
   - name: mpfr
     sources:
       - type: archive
-        url: https://ftp.gnu.org/gnu/mpfr/mpfr-4.2.0.tar.xz
-        sha256: 06a378df13501248c1b2db5aa977a2c8126ae849a9d9b7be2546fb4a9c26d993
+        url: https://www.mpfr.org/mpfr-current/mpfr-4.2.2.tar.xz
+        sha256: b67ba0383ef7e8a8563734e2e889ef5ec3c3b898a01d00fa0a6869ad81c6ce01
   - name: cgal
     cleanup:
       - /bin
