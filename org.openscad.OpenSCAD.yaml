@@ -1,6 +1,6 @@
 app-id: org.openscad.OpenSCAD
 runtime: org.kde.Platform
-runtime-version: "6.8"
+runtime-version: "6.9"
 sdk: org.kde.Sdk
 command: openscad-nightly
 rename-icon: openscad-nightly
@@ -50,8 +50,8 @@ modules:
       - -DCLIPPER2_TESTS=OFF
     sources:
       - type: archive
-        url: https://github.com/AngusJohnson/Clipper2/archive/refs/tags/Clipper2_1.5.2.tar.gz
-        sha256: 61b60a8a668958dafcd39443f8e0973693425666161e3ca24227097617c4d288
+        url: https://github.com/AngusJohnson/Clipper2/archive/refs/tags/Clipper2_1.5.4.tar.gz
+        sha256: 9d8a35a29d04cd1b7b45f542c0ba48015feece1210036ea9e4efaad3140af4b0
   - name: boost
     buildsystem: simple
     build-commands:
@@ -59,8 +59,8 @@ modules:
       - ./b2 -j $FLATPAK_BUILDER_N_JOBS install --prefix=/app
     sources:
       - type: archive
-        url: https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.bz2
-        sha256: af57be25cb4c4f4b413ed692fe378affb4352ea50fbe294a11ef548f4d527d89
+        url: https://archives.boost.io/release/1.88.0/source/boost_1_88_0.tar.bz2
+        sha256: 46d9d2c06637b219270877c9e16155cbd015b6dc84349af064c088e9b5b12f7b
   - shared-modules/glew/glew.json
   - shared-modules/glu/glu-9.json
   - name: freeglut
@@ -95,8 +95,8 @@ modules:
   - name: mpfr
     sources:
       - type: archive
-        url: https://www.mpfr.org/mpfr-current/mpfr-4.2.1.tar.xz
-        sha256: 277807353a6726978996945af13e52829e3abd7a9a5b7fb2793894e18f1fcbb2
+        url: https://www.mpfr.org/mpfr-current/mpfr-4.2.2.tar.xz
+        sha256: b67ba0383ef7e8a8563734e2e889ef5ec3c3b898a01d00fa0a6869ad81c6ce01
   - name: cgal
     cleanup:
       - /bin
@@ -133,8 +133,8 @@ modules:
       - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
     sources:
       - type: archive
-        url: https://github.com/uxlfoundation/oneTBB/archive/refs/tags/v2022.0.0.tar.gz
-        sha256: e8e89c9c345415b17b30a2db3095ba9d47647611662073f7fbf54ad48b7f3c2a
+        url: https://github.com/uxlfoundation/oneTBB/archive/refs/tags/v2022.2.0.tar.gz
+        sha256: f0f78001c8c8edb4bddc3d4c5ee7428d56ae313254158ad1eec49eced57f6a5b
   - name: libzip
     buildsystem: cmake-ninja
     config-opts:
@@ -143,8 +143,8 @@ modules:
       - -DCMAKE_INSTALL_INCLUDEDIR:PATH=/app/include
     sources:
       - type: archive
-        url: https://libzip.org/download/libzip-1.11.3.tar.xz
-        sha256: 9509d878ba788271c8b5abca9cfde1720f075335686237b7e9a9e7210fe67c1b
+        url: https://libzip.org/download/libzip-1.11.4.tar.xz
+        sha256: 8a247f57d1e3e6f6d11413b12a6f28a9d388de110adc0ec608d893180ed7097b
   - name: lib3mf
     buildsystem: cmake-ninja
     config-opts:
@@ -162,37 +162,30 @@ modules:
   - name: libspnav
     sources:
       - type: archive
-        url: https://github.com/FreeSpacenav/libspnav/releases/download/v1.1/libspnav-1.1.tar.gz
-        sha256: 04b297f68a10db4fa40edf68d7f823ba7b9d0442f2b665181889abe2cea42759
-  - name: libcudacxx
+        url: https://github.com/FreeSpacenav/libspnav/releases/download/v1.2/libspnav-1.2.tar.gz
+        sha256: 093747e7e03b232e08ff77f1ad7f48552c06ac5236316a5012db4269951c39db
+  - name: graphite2
+    # Included for fixing https://github.com/harfbuzz/harfbuzz/issues/5439
     buildsystem: cmake-ninja
-    builddir: true
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DLIBCUDACXX_ENABLE_CUDA=OFF
-      - -DLIBCUDACXX_ENABLE_LIBCUDACXX_TESTS=OFF
     sources:
       - type: archive
-        url: https://github.com/NVIDIA/libcudacxx/archive/refs/tags/1.9.0.tar.gz
-        sha256: 05b1435ad65f5bdef1bb8d1eb29dc8f0f7df34c01d77bf8686687a4603588bce
-      # make install patch from debian package
-      - type: patch
-        path: patches/0002-Correct-issues-with-CMake-install-rules-331.patch
-  - name: thrust
-    buildsystem: cmake-ninja
-    builddir: true
+        url: https://github.com/silnrsi/graphite/releases/download/1.3.14/graphite2-1.3.14.tgz
+        sha256: f99d1c13aa5fa296898a181dff9b82fb25f6cc0933dbaa7a475d8109bd54209d
+  - name: harfbuzz
+    # Included for fixing https://github.com/harfbuzz/harfbuzz/issues/5439
+    buildsystem: meson
     config-opts:
-      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DTHRUST_ENABLE_TESTING=OFF
-      - -DTHRUST_ENABLE_EXAMPLES=OFF
-      - -DTHRUST_INSTALL_CUB_HEADERS=OFF
-      - -DTHRUST_INSTALL_LIBCUDACXX_HEADERS=OFF
-      - -DTHRUST_HOST_SYSTEM=TBB
-      - -DTHRUST_DEVICE_SYSTEM=TBB
+      - -Dcpp_args=-fno-exceptions
+      - -Dgraphite2=enabled
+      - -Dgobject=disabled
+      - -Dutilities=disabled
+      - -Dtests=disabled
+      - -Dbenchmark=disabled
+      - -Ddocs=disabled
     sources:
       - type: archive
-        url: https://github.com/NVIDIA/thrust/archive/refs/tags/2.1.0.tar.gz
-        sha256: ebfa1a31867a95b8b0555ae45fc7c45538edfa5929ec718951eae0bbc7ed3108
+        url: https://github.com/harfbuzz/harfbuzz/releases/download/11.4.1/harfbuzz-11.4.1.tar.xz
+        sha256: 7aafab93115eb56cdc9a931ab7d19ff60d7f2937b599d140f17236f374e32698
   - name: openscad
     buildsystem: cmake-ninja
     config-opts:
@@ -211,6 +204,6 @@ modules:
     sources:
       - type: git
         url: https://github.com/openscad/openscad.git
-        commit: ce5039f8a9545ad5a8cf197b3ca11c0939bc67f1
+        commit: 1b100be767b02e8374852243a40545bf48b1a6ff
     post-install:
       - sed -i -e 's/\(<id>org.openscad.OpenSCAD\)-nightly/\1/' /app/share/metainfo/org.openscad.OpenSCAD-nightly.appdata.xml
