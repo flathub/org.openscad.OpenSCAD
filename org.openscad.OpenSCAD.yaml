@@ -166,6 +166,10 @@ modules:
   - name: graphite2
     # Included for fixing https://github.com/harfbuzz/harfbuzz/issues/5439
     buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
     sources:
       - type: archive
         url: https://github.com/silnrsi/graphite/releases/download/1.3.14/graphite2-1.3.14.tgz
@@ -183,8 +187,8 @@ modules:
       - -Ddocs=disabled
     sources:
       - type: archive
-        url: https://github.com/harfbuzz/harfbuzz/releases/download/11.4.1/harfbuzz-11.4.1.tar.xz
-        sha256: 7aafab93115eb56cdc9a931ab7d19ff60d7f2937b599d140f17236f374e32698
+        url: https://github.com/harfbuzz/harfbuzz/releases/download/12.3.2/harfbuzz-12.3.2.tar.xz
+        sha256: 6f6db164359a2da5a84ef826615b448b33e6306067ad829d85d5b0bf936f1bb8
   - name: openscad
     buildsystem: cmake-ninja
     config-opts:
