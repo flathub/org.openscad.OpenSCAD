@@ -156,10 +156,8 @@ modules:
       - -DUSE_INCLUDED_LIBZIP=OFF
     sources:
       - type: archive
-        url: https://github.com/3MFConsortium/lib3mf/archive/refs/tags/v2.4.1.tar.gz
-        sha256: 081dea66ddd1b958644bfac0fe9a580e63726061459efce5190a10161082f8f7
-      - type: patch
-        path: patches/lib3mf-2.4.1_inc_algorithm.patch
+        url: https://github.com/3MFConsortium/lib3mf/archive/refs/tags/v2.5.0-alpha.tar.gz
+        sha256: 78b9462ef52d2e1167a60d93f6583173669f8061d534b74c43477f6bd71cd35e
   - name: libspnav
     sources:
       - type: archive
