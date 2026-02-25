@@ -203,13 +203,13 @@ modules:
       - -DSUFFIX=nightly
       - -DSNAPSHOT=ON
       - -DUSE_QT6=ON
-      - -DOPENSCAD_VERSION=2026.01.24.fp
-      - -DOPENSCAD_COMMIT=e7e0f47fa
+      - -DOPENSCAD_VERSION=2026.02.25.fp
+      - -DOPENSCAD_COMMIT=ae3a780
     cleanup:
       - /share/pixmaps
     sources:
       - type: git
         url: https://github.com/openscad/openscad.git
-        commit: e7e0f47fac86f2a3c69f5e7767680ce5a34a6d32
+        commit: ae3a780de777bcb96d41631818551650bc79650d
     post-install:
       - sed -i -e 's/\(<id>org.openscad.OpenSCAD\)-nightly/\1/' /app/share/metainfo/org.openscad.OpenSCAD-nightly.appdata.xml
