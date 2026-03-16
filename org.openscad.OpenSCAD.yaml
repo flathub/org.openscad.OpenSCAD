@@ -158,7 +158,7 @@ modules:
       - type: archive
         strip-components: 0
         url: https://github.com/3MFConsortium/lib3mf/releases/download/v2.5.0/lib3mf-2.5.0-source-with-submodules.zip
-        sha256: 6510552a576fe95f02230f7d1c48ac18f2516fd82ae8cd082695241310963124
+        sha256: 46914f7c7a82ee0839fdd09b339daf621540d5c8d8904b2a0449fd67353dd7cb
   - name: libspnav
     sources:
       - type: archive
