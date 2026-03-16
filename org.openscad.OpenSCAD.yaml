@@ -203,8 +203,8 @@ modules:
       - -DSUFFIX=nightly
       - -DSNAPSHOT=ON
       - -DUSE_QT6=ON
-      - -DOPENSCAD_VERSION=2026.02.25.fp
-      - -DOPENSCAD_COMMIT=ae3a780
+      - -DOPENSCAD_VERSION=2026.03.17.fp
+      - -DOPENSCAD_COMMIT=cc559f7aa
     cleanup:
       - /share/pixmaps
     sources:
