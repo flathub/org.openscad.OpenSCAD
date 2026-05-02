@@ -1,6 +1,6 @@
 app-id: org.openscad.OpenSCAD
 runtime: org.kde.Platform
-runtime-version: 5.15-24.08
+runtime-version: 5.15-25.08
 sdk: org.kde.Sdk
 command: openscad
 rename-desktop-file: openscad.desktop
@@ -40,10 +40,10 @@ modules:
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
     build-options:
-      cflags: -fcommon
+      cflags: -std=gnu18 -fcommon
       cxxflags: -fcommon
     sources:
       - type: archive
@@ -78,8 +78,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://github.com/CGAL/cgal/releases/download/v5.5.2/CGAL-5.5.2-library.zip
-        sha256: 77b17ba5d43fe844c0eca7fb7eff7d5687174b037290c390f1251ef44cc4909b
+        url: https://github.com/CGAL/cgal/releases/download/v5.5.5/CGAL-5.5.5-library.zip
+        sha256: 8ff58393cabc90f9cf663f2388edcc0129a3c29b63987439e17378e03837e2ec
   - name: opencsg
     no-autogen: true
     no-parallel-make: true
@@ -103,8 +103,8 @@ modules:
   - name: double-conversion
     buildsystem: cmake-ninja
     config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
     sources:
       - type: archive
         url: https://github.com/google/double-conversion/archive/refs/tags/v3.2.1.tar.gz
@@ -112,19 +112,22 @@ modules:
   - name: lib3mf
     buildsystem: cmake
     config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
       - -DLIB3MF_TESTS=OFF
       - -DUSE_INCLUDED_LIBZIP=OFF
     sources:
       - type: archive
         url: https://github.com/3MFConsortium/lib3mf/archive/v1.8.1.tar.gz
         sha256: 207dd142c9ca86a4fb1a4b2baadbdf579f35e03f9b8bf5c02dae027da5ae9d17
+      - type: patch
+        path: patches/lib3mf-build.patch
+
   - name: libzip
     buildsystem: cmake-ninja
     config-opts:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
-      - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
       - -DCMAKE_INSTALL_INCLUDEDIR:PATH=/app/include
     sources:
       - type: archive
@@ -145,7 +148,7 @@ modules:
       - SPNAV_LIBPATH=/app/lib
       - QMAKE_CFLAGS_ISYSTEM=
       - QMAKE_LIBDIR=/app/lib
-      - QMAKE_CXXFLAGS+=-fext-numeric-literals
+      - QMAKE_CXXFLAGS+=-fext-numeric-literals -std=gnu++17
       - CONFIG-=experimental
       - CONFIG-=debug
     cleanup:
