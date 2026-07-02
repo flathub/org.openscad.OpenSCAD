@@ -188,8 +188,8 @@ modules:
       - -Ddocs=disabled
     sources:
       - type: archive
-        url: https://github.com/harfbuzz/harfbuzz/releases/download/12.3.2/harfbuzz-12.3.2.tar.xz
-        sha256: 6f6db164359a2da5a84ef826615b448b33e6306067ad829d85d5b0bf936f1bb8
+        url: https://github.com/harfbuzz/harfbuzz/releases/download/14.2.1/harfbuzz-14.2.1.tar.xz
+        sha256: a54a5d8e9380a41fbb762ce367bcbf7704792dfca0d93f1bbca86c5a57902e0e
   - name: openscad
     buildsystem: cmake-ninja
     config-opts:
