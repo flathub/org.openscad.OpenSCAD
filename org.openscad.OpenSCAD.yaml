@@ -36,8 +36,8 @@ modules:
       - -DBUILD_SHARED_LIBS=OFF
     sources:
       - type: archive
-        url: https://github.com/g-truc/glm/archive/refs/tags/1.0.1.tar.gz
-        sha256: 9f3174561fd26904b23f0db5e560971cbf9b3cbda0b280f04d5c379d03bf234c
+        url: https://github.com/g-truc/glm/archive/refs/tags/1.0.3.tar.gz
+        sha256: 6775e47231a446fd086d660ecc18bcd076531cfedd912fbd66e576b118607001
   - name: polyclipping2
     buildsystem: cmake-ninja
     builddir: true
@@ -55,12 +55,12 @@ modules:
   - name: boost
     buildsystem: simple
     build-commands:
-      - ./bootstrap.sh --with-libraries=filesystem,program_options,regex,thread,system
+      - ./bootstrap.sh --with-libraries=filesystem,program_options,regex,thread
       - ./b2 -j $FLATPAK_BUILDER_N_JOBS install --prefix=/app
     sources:
       - type: archive
-        url: https://archives.boost.io/release/1.88.0/source/boost_1_88_0.tar.bz2
-        sha256: 46d9d2c06637b219270877c9e16155cbd015b6dc84349af064c088e9b5b12f7b
+        url: https://archives.boost.io/release/1.91.0/source/boost_1_91_0.tar.bz2
+        sha256: de5e6b0e4913395c6bdfa90537febd9028ea4c0735d2cdb0cd9b45d5f51264f5
   - shared-modules/glew/glew.json
   - shared-modules/glu/glu-9.json
   - name: freeglut
@@ -80,8 +80,8 @@ modules:
   - name: libXmu
     sources:
       - type: archive
-        url: https://www.x.org/archive/individual/lib/libXmu-1.2.1.tar.xz
-        sha256: fcb27793248a39e5fcc5b9c4aec40cc0734b3ca76aac3d7d1c264e7f7e14e8b2
+        url: https://xorg.freedesktop.org/archive/individual/lib/libXmu-1.3.1.tar.xz
+        sha256: 81a99e94c4501e81c427cbaa4a11748b584933e94b7a156830c3621256857bc4
   - name: eigen
     builddir: true
     buildsystem: cmake-ninja
@@ -91,8 +91,8 @@ modules:
       - /share
     sources:
       - type: archive
-        url: https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.bz2
-        sha256: b4c198460eba6f28d34894e3a5710998818515104d6e74e5cc331ce31e46e626
+        url: https://gitlab.com/libeigen/eigen/-/archive/5.0.1/eigen-5.0.1.tar.bz2
+        sha256: e4de6b08f33fd8b8985d2f204381408c660bffa6170ac65b68ae1bd3cd575c0a
   - name: mpfr
     sources:
       - type: archive
@@ -106,8 +106,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=RelWithDebInfo
     sources:
       - type: archive
-        url: https://github.com/CGAL/cgal/releases/download/v6.0.1/CGAL-6.0.1-library.tar.xz
-        sha256: c752737f91d1af71fa96038f0e37945ce82a5f1fffb6200172cfcdd77755a356
+        url: https://github.com/CGAL/cgal/releases/download/v6.2/CGAL-6.2-library.tar.xz
+        sha256: f75d2b2486842fb47222c780c7241c262d392802d0811143c4e9b539972ee55b
   - name: qscintilla
     buildsystem: qmake
     subdir: src
@@ -134,8 +134,8 @@ modules:
       - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
     sources:
       - type: archive
-        url: https://github.com/uxlfoundation/oneTBB/archive/refs/tags/v2022.2.0.tar.gz
-        sha256: f0f78001c8c8edb4bddc3d4c5ee7428d56ae313254158ad1eec49eced57f6a5b
+        url: https://github.com/uxlfoundation/oneTBB/archive/refs/tags/v2023.0.0.tar.gz
+        sha256: f8767b971ec6aea25dde58ae0f593e94e7aa75a739a86f67967012f69e2199b1
   - name: libzip
     buildsystem: cmake-ninja
     config-opts:
@@ -172,9 +172,9 @@ modules:
       - -DCMAKE_INSTALL_LIBDIR:PATH=/app/lib
       - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
     sources:
-      - type: git
-        url: https://github.com/silnrsi/graphite.git
-        commit: 142e1bda3439d2bd376bcac9c2b247c9532bacde
+      - type: archive
+        url: https://github.com/silnrsi/graphite/releases/download/1.3.15/graphite2-1.3.15.tgz
+        sha256: c6bc8b4252724665297f7cad0c55897285c673f9b8e6db3522ace833593fe0b1
   - name: harfbuzz
     # Included for fixing https://github.com/harfbuzz/harfbuzz/issues/5439
     buildsystem: meson
@@ -188,8 +188,8 @@ modules:
       - -Ddocs=disabled
     sources:
       - type: archive
-        url: https://github.com/harfbuzz/harfbuzz/releases/download/12.3.2/harfbuzz-12.3.2.tar.xz
-        sha256: 6f6db164359a2da5a84ef826615b448b33e6306067ad829d85d5b0bf936f1bb8
+        url: https://github.com/harfbuzz/harfbuzz/releases/download/14.2.1/harfbuzz-14.2.1.tar.xz
+        sha256: a54a5d8e9380a41fbb762ce367bcbf7704792dfca0d93f1bbca86c5a57902e0e
   - name: openscad
     buildsystem: cmake-ninja
     config-opts:
@@ -203,13 +203,13 @@ modules:
       - -DSUFFIX=nightly
       - -DSNAPSHOT=ON
       - -DUSE_QT6=ON
-      - -DOPENSCAD_VERSION=2026.04.26.fp
-      - -DOPENSCAD_COMMIT=b38f68881
+      - -DOPENSCAD_VERSION=2026.07.01.fp
+      - -DOPENSCAD_COMMIT=34a81df5b
     cleanup:
       - /share/pixmaps
     sources:
       - type: git
         url: https://github.com/openscad/openscad.git
-        commit: b38f68881203d7fc9926b6d87d6abf64e21ad312
+        commit: 34a81df5bb1fc95b8eb5b59d91a7831413264e30
     post-install:
       - sed -i -e 's/\(<id>org.openscad.OpenSCAD\)-nightly/\1/' /app/share/metainfo/org.openscad.OpenSCAD-nightly.appdata.xml
