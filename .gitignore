@@ -1,3 +1,4 @@
 _build
 _repo
 org.openscad.OpenSCAD.flatpak
+.flatpak-builder/
