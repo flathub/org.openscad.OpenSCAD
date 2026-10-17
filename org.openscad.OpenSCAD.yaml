@@ -203,15 +203,15 @@ modules:
       - -DSUFFIX=nightly
       - -DSNAPSHOT=ON
       - -DUSE_QT6=ON
-      - -DOPENSCAD_VERSION=2026.10-TEST.fp
-      - -DOPENSCAD_COMMIT=31f27b75
+      - -DOPENSCAD_VERSION=2026.10-TEST4.fp
+      - -DOPENSCAD_COMMIT=5a864f17
       - -DOPENSCAD_BUILD_ENV=flatpak
     cleanup:
       - /share/pixmaps
     sources:
       - type: archive
-        url: https://files.openscad.org/rc/openscad-2026.10-TEST.src.tar.gz
-        sha256: f5608dffa83b06b15ef5660615f3a7a1140dcd8ce4eef34857d0444670a11aff
+        url: https://files.openscad.org/rc/openscad-2026.10-TEST4.src.tar.gz
+        sha256: cfd89bc9fb3bf48656dcbab377dc2896f6ef98f6069d04a377636d5b0cc14ed7
     post-install:
       - sed -i -e 's/\(<id>org.openscad.OpenSCAD\)-nightly/\1/' /app/share/metainfo/org.openscad.OpenSCAD-nightly.appdata.xml
-      - sed -i -e 's/\(<releases>\)/\1\n    <release date="2026-10-03" version="2026.10-TEST"\/>/' /app/share/metainfo/org.openscad.OpenSCAD-nightly.appdata.xml
+      - sed -i -e 's/\(<releases>\)/\1\n    <release date="2026-10-16" version="2026.10-TEST4"\/>/' /app/share/metainfo/org.openscad.OpenSCAD-nightly.appdata.xml
